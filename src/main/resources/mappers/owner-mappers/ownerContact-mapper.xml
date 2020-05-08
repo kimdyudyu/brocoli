@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ownerContact-mapper">
+	
+	<resultMap  type="Contact" id="contactResultSet">
+		<id property="con_NO" column="CON_NO"/>
+		<result property="con_Date" column="CON_DATE"/>
+		<result property="con_Writer" column="CON_WRITER"/>
+		<result property="con_Content" column="CON_CONTENT"/>
+		<result property="con_Title" column="CON_TITLE"/>
+		<result property="con_View_Check" column="CON_VIEW_CHECK"/>
+		<result property="con_Img" column="CON_IMG"/>
+		<result property="con_Img_ReName" column="CON_IMG_RENAME"/>
+		<result property="con_Status" column="CON_STATUS"/>
+		<result property="con_Mno" column="CON_MNO"/>
+		<result property="con_Bno" column="CON_BNO"/>
+		
+		<collection property="blist" resultMap="brandResultSet" ></collection>
+	</resultMap>
+	
+		<!-- 브랜드 정보 -->
+	<resultMap type="Brand" id="brandResultSet">
+		<id property="brand_NO" column="BRAND_NO"/>
+		<result property="b_Name" column="B_NAME"/>
+		<result property="b_Logo" column="B_LOGO"/>
+		<result property="b_Logo_ReName" column="B_LOGO_RENAME"/>
+		<result property="b_Business_NO" column="B_BUSINESS_NO"/>
+		<result property="b_Status" column="B_STATUS"/>
+		<result property="b_Enter_Date" column="B_ENTER_DATE"/>
+		<result property="b_Close_Date" column="B_CLOSE_DATE"/>
+		<result property="b_Close_Content" column="B_CLOSE_CONTENT"/>
+		<result property="b_Modify_ID" column="B_MODIFY_ID"/>
+		<result property="b_Modify_Date" column="B_MODIFY_DATE"/>
+		<result property="b_Owner1_ID" column="B_OWNER1_ID"/>
+		<result property="b_Owner2_ID" column="B_OWNER2_ID"/>
+		<result property="b_Owner3_ID" column="B_OWNER3_ID"/>
+		<result property="b_Phone" column="B_PHONE"/>
+		<result property="b_Address" column="B_ADDRESS"/>
+		<result property="b_Owner_Name" column="B_OWNER_NAME"/>
+		<result property="b_Comment" column="B_COMMENT"/>
+		<result property="b_Email1" column="B_EMAIL1"/>
+		<result property="b_Email2" column="B_EMAIL2"/>
+		<result property="b_Email3" column="B_EMAIL3"/>
+	</resultMap>
+	
+	<resultMap type="Member" id="memberResultSet">
+		<id property="mNO" column="MNO"/>
+		<result property="mId" column="MID"/>
+		<result property="pwd" column="PWD"/>
+		<result property="mName" column="MNAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="gender" column="GENDER"/>
+		<result property="birthDay" column="BIRTHDAY"/>
+		<result property="mGrant" column="MGRANT"/>
+		<result property="mPoint" column="MPOINT"/>
+		<result property="order_Count" column="ORDER_COUNT"/>
+		<result property="order_Price" column="ORDER_PRICE"/>
+		<result property="report_YN" column="REPORT_YN"/>
+		<result property="block_YN" column="BLOCK_YN"/>
+		<result property="block_Content" column="BLOCK_CONTENT"/>
+		<result property="del_Flag_YN" column="DEL_FLAG_YN"/>
+		<result property="del_Date" column="DEL_DATE"/>
+		<result property="enrollDate" column="ENROLLDATE"/>
+		<result property="brand" column="BRAND"/>
+		<result property="brand_NO" column="BRAND_NO"/>
+		
+		<collection property="blist" resultMap="brandResultSet" ></collection>
+	</resultMap>
+
+	<select id="selectContactList" resultMap="contactResultSet">
+		SELECT * 
+		FROM CONTACT CT
+        LEFT JOIN BRAND B
+        ON CT.CON_BNO = B.BRAND_NO
+		WHERE CT.CON_STATUS = 'Y'
+		AND CT.CON_BNO = #{con_Bno}
+        AND CT.CON_DATE between TO_DATE(TO_CHAR(SYSDATE-60,'YYYYMMDD'), 'YYYYMMDD') and SYSDATE 
+        ORDER BY CT.CON_DATE ASC
+	</select>
+	
+	<select id="selectContactUser" resultMap="memberResultSet">
+		SELECT * 
+		FROM MEMBER M
+		LEFT JOIN BRAND B
+		ON M.BRAND_NO = B.BRAND_NO
+		WHERE M.BRAND_NO = #{brand_NO}
+	</select>
+
+	<update id="updateContactViewCheck" parameterType="_int">
+		UPDATE CONTACT
+		SET CON_VIEW_CHECK = 'Y'
+		WHERE CON_NO = #{con_NO}
+	</update>
+
+	<insert id="insertContact" parameterType="Contact">
+		INSERT INTO CONTACT
+		VALUES (SEQ_CONTACT.NEXTVAL,SYSDATE,#{con_Writer},#{con_Content},#{con_Title},DEFAULT,NULL,NULL,'Y',#{con_Mno},#{con_Bno})
+	</insert>
+	
+	<insert id="insertContactImg" parameterType="Contact">
+		INSERT INTO CONTACT
+		VALUES (SEQ_CONTACT.NEXTVAL,SYSDATE,#{con_Writer},#{con_Content},#{con_Title},DEFAULT,#{con_Img},#{con_Img_ReName},'Y',#{con_Mno},#{con_Bno})
+	</insert>
+	
+	
+
+</mapper>

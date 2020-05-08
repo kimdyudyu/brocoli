@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminBrand">
+	<resultMap id="brandResultSet" type="Brand">
+		<id property="brand_NO" column="BRAND_NO"/>
+		<result property="b_Name" column="B_NAME"/>
+		<result property="b_Logo" column="B_LOGO"/>
+		<result property="b_Logo_ReName" column="B_LOGO_RENAME"/>
+		<result property="b_Business_NO" column="B_BUSINESS_NO"/>
+		<result property="b_Status" column="B_STATUS"/>
+		<result property="b_Enter_Date" column="B_ENTER_DATE"/>
+		<result property="b_Close_Date" column="B_CLOSE_DATE"/>
+		<result property="b_Close_Content" column="B_CLOSE_CONTENT"/>
+		<result property="b_Modify_ID" column="B_MODIFY_ID"/>
+		<result property="b_Modify_Date" column="B_MODIFY_DATE"/>
+		<result property="b_Owner1_ID" column="B_OWNER1_ID"/>
+		<result property="b_Owner2_ID" column="B_OWNER2_ID"/>
+		<result property="b_Owner3_ID" column="B_OWNER3_ID"/>
+		<result property="b_Phone" column="B_PHONE"/>
+		<result property="b_Address" column="B_ADDRESS"/>
+		<result property="b_Owner_Name" column="B_OWNER_NAME"/>
+		<result property="b_Comment" column="B_COMMENT"/>
+		<result property="b_Email1" column="B_EMAIL1"/>
+		<result property="b_Email2" column="B_EMAIL2"/>
+		<result property="b_Email3" column="B_EMAIL3"/>
+	</resultMap>
+	
+	<resultMap id="memberResultSet" type="Member">
+		<id property="mNO" column="MNO"/>
+		<result property="mId" column="MID"/>
+		<result property="pwd" column="PWD"/>
+		<result property="mName" column="MNAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="gender" column="GENDER"/>
+		<result property="birthDay" column="BIRTHDAY"/>
+		<result property="mGrant" column="MGRANT"/>
+		<result property="mPoint" column="MPOINT"/>
+		<result property="order_Count" column="ORDER_COUNT"/>
+		<result property="order_Price" column="ORDER_PRICE"/>
+		<result property="report_YN" column="REPORT_YN"/>
+		<result property="block_YN" column="BLOCK_YN"/>
+		<result property="block_Content" column="BLOCK_CONTENT"/>
+		<result property="del_Flag_YN" column="DEL_FLAG_YN"/>
+		<result property="del_Date" column="DEL_DATE"/>
+		<result property="enrollDate" column="ENROLLDATE"/>
+		<result property="brand" column="BRAND"/>
+		<result property="brand_NO" column="BRAND_NO"/>
+	</resultMap>
+	
+	<resultMap id="contactResultSet" type="Contact">
+		<id property="con_NO" column="CON_NO"/>
+		<result property="con_Date" column="CON_DATE"/>
+		<result property="con_Writer" column="CON_WRITER"/>
+		<result property="con_Content" column="CON_CONTENT"/>
+		<result property="con_Title" column="CON_TITLE"/>
+		<result property="con_View_Check" column="CON_VIEW_CHECK"/>
+		<result property="con_Img" column="CON_IMG"/>
+		<result property="con_Img_ReName" column="CON_IMG_RENAME"/>
+		<result property="con_Status" column="CON_STATUS"/>
+		<result property="con_Mno" column="CON_MNO"/>
+		
+		<result property="brandName" column="BRAND"/>
+	</resultMap>
+	
+	<resultMap id="EnteringQuestionResultSet" type="Entering_Question">
+		<id property="ent_NO" column="ENT_NO"/>
+		<result property="ent_Business_NO" column="ENT_BUSINESS_NO"/>
+		<result property="ent_Bname" column="ENT_BNAME"/>
+		<result property="ent_Url" column="ENT_URL"/>
+		<result property="ent_ID" column="ENT_ID"/>
+		<result property="ent_Phone" column="ENT_PHONE"/>
+		<result property="ent_Mail" column="ENT_MAIL"/>
+		<result property="ent_Comment" column="ENT_COMMENT"/>
+		<result property="ent_Status" column="ENT_STATUS"/>
+	</resultMap>
+	
+	
+	<select id="selectBrandList" parameterType="Brand" resultMap="brandResultSet">
+		SELECT * 
+		FROM BRAND
+	</select>
+	
+	<select id="selectBrandDetail" parameterType="Brand" resultMap="brandResultSet">
+		SELECT *
+		FROM BRAND
+		WHERE BRAND_NO = #{brand_NO}
+	</select>
+	
+	<update id="updateBrand" parameterType="Brand">
+		UPDATE	BRAND
+		SET	BRAND_NO=#{brand_NO},B_NAME=#{b_Name},B_BUSINESS_NO=#{b_Business_NO},B_STATUS=#{b_Status},B_ENTER_DATE=#{b_Enter_Date},
+			B_CLOSE_CONTENT=#{b_Close_Content},B_MODIFY_ID=#{b_Modify_ID},B_MODIFY_DATE=SYSDATE,B_OWNER1_ID=#{b_Owner1_ID},
+			B_OWNER2_ID=#{b_Owner2_ID},B_OWNER3_ID=#{b_Owner3_ID},B_PHONE=#{b_Phone},B_ADDRESS=#{b_Address},B_OWNER_NAME=#{b_Owner_Name},
+			B_COMMENT=#{b_Comment},B_EMAIL1=#{b_Email1},B_EMAIL2=#{b_Email2},B_EMAIL3=#{b_Email3}
+		WHERE BRAND_NO=#{brand_NO}
+	</update>
+	
+	<select id="brandNameCheck" parameterType="Brand" resultType="_int">
+		SELECT COUNT(*)
+		FROM BRAND
+		WHERE B_NAME=#{b_Name}
+	</select>
+	
+	<select id="ownerId1Check" parameterType="Brand" resultType="_int">
+		SELECT COUNT(*)
+		FROM BRAND
+		WHERE B_OWNER1_ID=#{b_Owner1_ID}
+	</select>
+	
+	<select id="ownerId2Check" parameterType="Brand" resultType="_int">
+		SELECT COUNT(*)
+		FROM BRAND
+		WHERE B_OWNER2_ID=#{b_Owner2_ID}
+	</select>
+	
+	<select id="ownerId3Check" parameterType="Brand" resultType="_int">
+		SELECT COUNT(*)
+		FROM BRAND
+		WHERE B_OWNER3_ID=#{b_Owner3_ID}
+	</select>
+	
+	<insert id="brandEnroll" parameterType="Brand">
+		INSERT INTO BRAND
+		VALUES(SEQ_BRAND_NO.NEXTVAL,#{b_Name},#{b_Logo},#{b_Logo_ReName},#{b_Business_NO},'Y',DEFAULT,
+				TO_DATE('20300101','YYYY-MM-DD'),#{b_Close_Content},#{b_Modify_ID},DEFAULT,#{b_Owner1_ID},#{b_Owner2_ID},#{b_Owner3_ID},
+				#{b_Phone},#{b_Address},#{b_Owner_Name},#{b_Comment},#{b_Email1},#{b_Email2},#{b_Email3})
+	</insert>
+	
+	<update id="brandOwnerUpdate" parameterType="Brand">
+		UPDATE MEMBER
+		SET MGRANT='2',BRAND=#{b_Name},BRAND_NO=#{brand_NO}
+		WHERE MID = #{b_Owner1_ID} OR MID = #{b_Owner2_ID} OR MID = #{b_Owner3_ID} 
+	</update> 
+	
+	<select id="ownerContactList" parameterType="Contact" resultMap="contactResultSet">
+		SELECT C.*, M.BRAND
+		FROM CONTACT C 
+     		JOIN MEMBER M
+     		ON C.CON_MNO = M.MNO
+	</select>
+
+	<select id="ownerContactDetail" parameterType="Contact" resultMap="contactResultSet">
+		SELECT *
+		FROM CONTACT
+		WHERE CON_NO = #{ocId}
+	</select>
+	
+	<insert id="ownerContactWrite" parameterType="Contact">
+		INSERT INTO CONTACT
+		VALUES(SEQ_CONTACT.NEXTVAL,SYSDATE,#{con_Writer},#{con_Content},#{con_Title},DEFAULT,
+				#{con_Img},#{con_Img_ReName},DEFAULT,#{con_Mno},#{con_Bno})
+	</insert>
+	
+	<update id="ownerCheckView">
+		UPDATE CONTACT
+		SET CON_VIEW_CHECK = 'Y'
+		WHERE CON_NO = #{ocId}
+	</update>
+	
+	<select id="ownerContactUpdate" parameterType="Contact" resultMap="contactResultSet">
+		SELECT *
+		FROM CONTACT
+		WHERE CON_NO = #{con_NO}
+	</select>
+	
+	<update id="ownerContactUpdateSave">
+		UPDATE CONTACT
+		SET CON_CONTENT=#{con_Content},CON_TITLE=#{con_Title},CON_IMG=#{con_Img},CON_IMG_RENAME=#{con_Img_ReName}
+		WHERE CON_NO = #{con_NO}
+	</update>
+	
+	<update id="brandDelete">
+		UPDATE BRAND
+		SET B_STATUS='N'
+		WHERE BRAND_NO=#{brand_NO}
+	</update>
+	
+	<select id="brandApplyList" parameterType="Entering_Question" resultMap="EnteringQuestionResultSet">
+		SELECT *
+		FROM ENTERING_QUESTION
+	</select>
+</mapper>

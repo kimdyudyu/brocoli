@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ownerMagazine-mapper">
+	
+	<resultMap type="Magazine" id="magazineResultSet">
+		<id property="m_NO" column="M_NO"/>
+		
+		<result property="m_ID" column="M_ID"/>
+		<result property="m_Title" column="M_TITLE"/>
+		<result property="m_Comment" column="M_COMMENT"/>
+		<result property="m_Date" column="M_DATE"/>
+		<result property="m_Status" column="M_STATUS"/>
+		<result property="m_Category" column="M_CATEGORY"/>
+		<result property="m_Count" column="M_COUNT"/>
+		<result property="m_Brand_NO" column="M_BRAND_NO"/>
+		<result property="m_Mno" column="M_MNO"/>
+		
+		<collection property="m_Magazine_File" resultMap="magazineFileResultSet"/>
+	</resultMap>
+	
+	<resultMap type="Magazine_File" id="magazineFileResultSet">
+		<id property="mf_NO" column="MF_NO"/>
+		
+		<result property="mf_Img1" column="MF_IMG1"/>
+		<result property="mf_Img1_ReName" column="MF_IMG1_RENAME"/>
+		<result property="mf_Img2" column="MF_IMG2"/>
+		<result property="mf_Img2_ReName" column="MF_IMG2_RENAME"/>
+		<result property="mf_Img3" column="MF_IMG3"/>
+		<result property="mf_Img3_ReName" column="MF_IMG3_RENAME"/>
+		<result property="mf_Img4" column="MF_IMG4"/>
+		<result property="mf_Img4_ReName" column="MF_IMG4_RENAME"/>
+		<result property="mf_Img5" column="MF_IMG5"/>
+		<result property="mf_Img5_ReName" column="MF_IMG5_RENAME"/>
+		<result property="mf_Img6" column="MF_IMG6"/>
+		<result property="mf_Img6_ReName" column="MF_IMG6_RENAME"/>
+		<result property="mf_M_NO" column="MF_M_NO"/>
+	</resultMap>
+	
+	<!-- 매거진 정보등록 -->
+	<insert id="insertMagazine" parameterType="Magazine">
+  		<selectKey keyProperty="m_NO" resultType="int" order="BEFORE">
+		    SELECT SEQ_M_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO MAGAZINE
+		VALUES(#{m_NO},#{m_ID},#{m_Title},#{m_Comment},DEFAULT,DEFAULT,#{m_Category},DEFAULT,
+				#{m_Brand_NO},#{m_Mno})
+	</insert>	
+	
+	<!-- 매거진이미지 정보등록 -->
+	<insert id="insertMagazineFile" parameterType="Magazine_File">
+		INSERT INTO MAGAZINE_FILE
+		VALUES(SEQ_MF_NO.NEXTVAL, #{mf_Img1},#{mf_Img1_ReName},#{mf_Img2},#{mf_Img2_ReName},#{mf_Img3},#{mf_Img3_ReName},
+			#{mf_Img4},#{mf_Img4_ReName},#{mf_Img5},#{mf_Img5_ReName},#{mf_Img6},#{mf_Img6_ReName},#{mf_M_NO})
+	</insert>
+	
+	<select id="selectResultMagazine" resultMap="magazineResultSet">
+		SELECT *
+		FROM MAGAZINE MG
+		JOIN MAGAZINE_FILE MF
+		ON MG.m_NO = MF.mf_M_NO
+		WHERE MG.m_Brand_NO = #{bNO}
+		AND TO_CHAR(MG.m_Date,'YYYYMM') = TO_CHAR(SYSDATE,'YYYYMM')
+	</select>
+	
+	<select id="selectOldMagazine" resultMap="magazineResultSet">
+		SELECT *
+		FROM MAGAZINE MG
+		JOIN MAGAZINE_FILE MF
+		ON MG.m_NO = MF.mf_M_NO
+		WHERE MG.m_Brand_NO = #{bNO}
+        AND TO_CHAR(MG.m_Date,'YYYYMM') &lt; TO_CHAR(SYSDATE,'YYYYMM')
+	</select>
+	
+	
+	
+	
+	
+	
+</mapper>

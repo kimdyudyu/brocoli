@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="mypageMapper">
+		<resultMap type="Member" id="memberResultSet">
+		
+		<id property="mId" column="MID"/>
+		<result property="pwd" column="PWD"/>
+		<result property="mName" column="MNAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="gender" column="GENDER"/>
+		<result property="birthDay" column="BIRTHDAY"/>
+		<result property="mGrant" column="MGRANT"/>
+		<result property="mPoint" column="MPOINT"/>
+		<result property="order_Count" column="ORDER_COUNT"/>
+		<result property="order_Price" column="ORDER_PRICE"/>
+		<result property="report_YN" column="REPORT_YN"/>
+		<result property="block_YN" column="BLOCK_YN"/>
+		<result property="block_Content" column="BLOCK_CONTENT"/>
+		<result property="del_Flag_YN" column="DEL_FLAG_YN"/>
+		<result property="del_Date" column="DEL_DATE"/>
+		<result property="enrollDate" column="ENROLLDATE"/>
+		<result property="brand" column="BRAND"/>
+		<result property="brand_NO" column="BRAND_NO"/>
+	
+	</resultMap>
+	
+	<!-- resultMap -->
+   <!-- 상품등록정보 -->
+   <!-- 작성자 : 박주완 -->
+    <resultMap  type="Product" id="productResultSet">
+      <id property="p_NO" column="P_NO"/>
+      
+      <result property="p_Name" column="P_NAME"/>
+      <result property="p_Price" column="P_PRICE"/>
+      <result property="p_Sail_Price" column="P_SAIL_PRICE"/>
+      <result property="p_Last_Price" column="P_LAST_PRICE"/>
+      <result property="p_Bcategory" column="P_BCATEGORY"/>
+      <result property="p_Scategory" column="P_SCATEGORY"/>
+      <result property="p_Comment" column="P_COMMENT"/>
+      <result property="p_Order_Count" column="P_ORDER_COUNT"/>
+      <result property="p_Status" column="P_STATUS"/>
+      <result property="p_Writer" column="P_WRITER"/>
+      <result property="p_Insert_Date" column="P_INSERT_DATE"/>
+      <result property="p_Modify_Id" column="P_MODIFY_ID"/>
+      <result property="p_Modify_Date" column="P_MODIFY_DATE"/>
+      <result property="p_Show_YN" column="P_SHOW_YN"/>
+      <result property="p_Brand_NO" column="P_BRAND_NO"/>
+      
+      <collection property="pfList" resultMap="ProductFileResultSet"/>
+   </resultMap>
+   
+  <!-- 상품 이미지 등록정보 --> 
+   <resultMap  type="Product_File" id="ProductFileResultSet">
+      <id property="pf_NO" column="PF_NO"/>
+      
+      <result property="pf_Img1" column="PF_IMG1"/>
+      <result property="pf_Img1_ReName" column="PF_IMG1_RENAME"/>
+      <result property="pf_Img2" column="PF_IMG2"/>
+      <result property="pf_Img2_ReName" column="PF_IMG2_RENAME"/>
+      <result property="pf_Img3" column="PF_IMG3"/>
+      <result property="pf_Img3_ReName" column="PF_IMG3_RENAME"/>
+      <result property="pf_Img4" column="PF_IMG4"/>      
+      <result property="pf_Img4_ReName" column="PF_IMG4_RENAME"/>
+      <result property="pf_Img5" column="PF_IMG5"/>
+      <result property="pf_Img5_ReName" column="PF_IMG5_RENAME"/>
+      <result property="pf_Img6" column="PF_IMG6"/>
+      <result property="pf_Img6_ReName" column="PF_IMG6_RENAME"/>
+      <result property="pf_Dimg1" column="PF_DIMG1"/>
+      <result property="pf_Dimg1_ReName" column="PF_DIMG1_RENAME"/>
+      <result property="pf_Dimg2" column="PF_DIMG2"/>         
+      <result property="pf_Dimg2_ReName" column="PF_DIMG2_RENAME"/>
+      <result property="pf_Dimg3" column="PF_DIMG3"/>   
+      <result property="pf_Dimg3_ReName" column="PF_DIMG3_RENAME"/>
+      <result property="pf_P_NO" column="PF_P_NO"/>   
+
+   </resultMap>
+   
+   
+   <!--상품 옵션 등록정보-->
+
+   <resultMap id="productOptionResultSet" type="Product_Option">
+      <id property="op_NO" column="OP_NO"/>
+      
+      <result property="option_1" column="OPTION_1"/>
+      <result property="option_2" column="OPTION_2"/>
+      <result property="op_Stock" column="OP_STOCK"/>
+      <result property="op_Rec_Date" column="OP_REC_DATE"/>
+      <result property="op_Status_YN" column="OP_STATUS_YN"/>
+      <result property="op_P_NO" column="OP_P_NO"/>
+      
+      <collection property="pList" resultMap="productResultSet"/>
+   </resultMap>
+
+   
+<!-- ***************************** resultMap 끝 ***************************** -->
+	
+	
+	<resultMap type="Orders" id="orderResultSet">
+      <id property="or_NO" column="OR_NO"/>
+      
+      <result property="or_Date" column="OR_DATE"/>
+      <result property="or_Pname" column="OR_PNAME"/>
+      <result property="or_Option1" column="OR_OPTION1"/>
+      <result property="or_Option2" column="OR_OPTION2"/>
+      <result property="or_Amount" column="OR_AMOUNT"/>
+      <result property="or_Address" column="OR_ADDRESS"/>
+      <result property="or_Message" column="OR_MESSAGE"/>
+      <result property="or_Price" column="OR_PRICE"/>
+      <result property="or_Status" column="OR_STATUS"/>
+      <result property="or_Deliver_Num" column="OR_DELIVER_NUM"/>
+      <result property="or_Deliver_Vender" column="OR_DELIVER_VENDER"/>
+      <result property="or_Mno" column="OR_MNO"/>
+      <result property="or_P_NO" column="OR_P_NO"/>
+      <result property="or_Brand_NO" column="OR_BRAND_NO"/>
+      
+      <collection property="pOptionlist" resultMap="productOptionResultSet"/>
+   </resultMap>
+   
+   
+   <resultMap id="ChangeResultSet" type="Change">
+      <id property="ch_No" column="CH_NO"/>
+      
+      <result property="ch_Pname" column="CH_PNAME"/>
+      <result property="ch_Price" column="CH_PRICE"/>
+      <result property="ch_Reason" column="CH_REASON"/>
+      <result property="ch_Comment" column="CH_COMMENT"/>
+      <result property="ch_Date" column="CH_DATE"/>
+      <result property="ch_EnDate" column="CH_ENDATE"/>
+      <result property="ch_Status" column="CH_STATUS"/>
+      <result property="ch_Or_NO" column="CH_OR_NO"/>
+      <result property="ch_Mno" column="CH_MNO"/>
+      
+   </resultMap>
+   
+   
+   <resultMap id="RejectResultSet" type="Reject">
+      <id property="re_No" column="RE_NO"/>
+      
+      <result property="re_Pname" column="RE_PNAME"/>
+      <result property="re_Price" column="RE_PRICE"/>
+      <result property="re_Reason" column="RE_REASON"/>
+      <result property="re_Comment" column="RE_COMMENT"/>
+      <result property="re_Date" column="RE_DATE"/>
+      <result property="re_EnDate" column="RE_ENDATE"/>
+      <result property="re_Status" column="RE_STATUS"/>
+      <result property="re_MN_OR_NO" column="RE_MN_OR_NO"/>
+      <result property="re_Mno" column="RE_MNO"/>
+      
+   </resultMap>
+   
+   
+   <resultMap type="Review" id="reviewResultSet">
+		<id property="v_NO" column="V_NO"/>
+		
+		<result property="v_Writer" column="V_WRITER"/>
+		<result property="v_Content" column="V_CONTENT"/>
+		<result property="v_Date" column="V_DATE"/>
+		<result property="v_Modify_Date" column="V_MODIFY_DATE"/>
+		<result property="v_Count" column="V_COUNT"/>
+		<result property="v_Score" column="V_SCORE"/>
+		<result property="v_Check" column="V_CHECK"/>
+		<result property="v_Status" column="V_STATUS"/>
+		<result property="v_Img1" column="V_IMG1"/>
+		<result property="v_Img1_ReName" column="V_IMG1_RENAME"/>
+		<result property="v_Img2" column="V_IMG2"/>
+		<result property="v_Img2_ReName" column="V_IMG2_RENAME"/>		
+		<result property="v_Mno" column="V_MNO"/>
+		<result property="v_P_NO" column="V_P_NO"/>
+		<result property="v_B_NO" column="V_B_NO"/>
+	
+		<collection property="plist" resultMap="productResultSet"/>
+	</resultMap>
+   
+   
+   
+   
+   
+        <update id="updateMember" parameterType="Member">
+			UPDATE MEMBER
+			SET PWD=#{pwd},ADDRESS=#{address},EMAIL=#{email},PHONE=#{phone}
+			WHERE MID=#{mId}
+	    </update>
+	
+	    <update id="deleteMember" parameterType="string">
+			UPDATE MEMBER
+			SET DEL_FLAG_YN='Y'
+			WHERE MID=#{mId}
+	    </update>
+	    
+	    <select id="pwdCheck" parameterType="string" resultType="_int">
+			SELECT COUNT(*)
+			FROM MEMBER
+			WHERE PWD=#{password}
+	    </select>
+	    
+	    <select id="myorderList" resultMap="orderResultSet">
+			SELECT *
+	        FROM ORDERS
+	        JOIN PRODUCT_OPTION
+	        ON OR_P_NO = OP_P_NO
+	        JOIN PRODUCT
+	        ON OP_P_NO = P_NO
+	        JOIN PRODUCT_FILE
+	        ON P_NO = PF_P_NO
+	        WHERE OR_MNO = ${mNO}
+	        ORDER BY OR_NO DESC
+		</select>
+		
+		<select id="P_change" resultMap="orderResultSet">
+			SELECT *
+	        FROM MEMBER
+	        JOIN ORDERS
+	        ON MNO = OR_MNO
+	        JOIN PRODUCT_OPTION
+	        ON OR_P_NO = OP_P_NO
+	        JOIN PRODUCT
+	        ON OP_P_NO = P_NO
+	        JOIN PRODUCT_FILE
+	        ON P_NO = PF_P_NO
+	        WHERE OR_NO = #{or_No}
+		</select>
+		
+		<select id="P_reject" resultMap="orderResultSet">
+			SELECT *
+	        FROM MEMBER
+	        JOIN ORDERS
+	        ON MNO = OR_MNO
+	        JOIN PRODUCT_OPTION
+	        ON OR_P_NO = OP_P_NO
+	        JOIN PRODUCT
+	        ON OP_P_NO = P_NO
+	        JOIN PRODUCT_FILE
+	        ON P_NO = PF_P_NO
+	        WHERE OR_NO = #{or_No}
+		</select>
+		
+		<insert id="C_complete" parameterType="Change">
+		    INSERT INTO CHANGE
+	    	VALUES(SEQ_MNO.NEXTVAL,#{ch_Pname},#{ch_Price},#{ch_Reason}
+	    	,#{ch_Comment},SYSDATE,#{ch_EnDate},#{ch_Status},#{ch_Or_NO},#{ch_Mno})
+	    </insert>
+	    
+	    
+	    <insert id="R_complete" parameterType="Reject">
+		    INSERT INTO REJECT
+	    	VALUES(SEQ_MNO.NEXTVAL,#{re_Pname},#{re_Price},#{re_Reason}
+	    	,#{re_Comment},SYSDATE,#{re_Enddate},#{re_Status},#{re_MN_OR_NO},#{re_Mno})
+	    </insert>
+	    
+	    
+	     <select id="trackprocess" resultMap="orderResultSet">
+			SELECT *
+	        FROM MEMBER
+	        JOIN ORDERS
+	        ON MNO = OR_MNO
+	        JOIN PRODUCT_OPTION
+	        ON OR_P_NO = OP_P_NO
+	        JOIN PRODUCT
+	        ON OP_P_NO = P_NO
+	        JOIN PRODUCT_FILE
+	        ON P_NO = PF_P_NO
+	        WHERE OR_NO = #{or_No}
+		</select>
+	    
+	    
+	     <select id="selectDetail" resultMap="orderResultSet">
+			SELECT *
+	        FROM ORDERS
+	        JOIN PRODUCT_OPTION
+	        ON OR_P_NO = OP_P_NO
+	        JOIN PRODUCT
+	        ON OP_P_NO = P_NO
+	        JOIN PRODUCT_FILE
+	        ON P_NO = PF_P_NO
+	        <if test="'day' == or_Status">
+	        WHERE OR_DATE BETWEEN SYSDATE-7 AND SYSDATE
+	        </if> 
+	        <if test="'month' == or_Status">
+	        WHERE OR_DATE BETWEEN TO_CHAR(ADD_MONTHS(SYSDATE,-1),'YYYY-MM-DD') AND SYSDATE
+	        </if> 
+	        <if test="'t_month' == or_Status">
+	        WHERE OR_DATE BETWEEN TO_CHAR(ADD_MONTHS(SYSDATE,-3),'YYYY-MM-DD') AND SYSDATE 
+	        </if>
+	         <if test="'s_month' == or_Status">
+	        WHERE OR_DATE BETWEEN TO_CHAR(ADD_MONTHS(SYSDATE,-6),'YYYY-MM-DD') AND SYSDATE
+	        </if>
+	        AND OR_MNO = #{or_Mno}
+	        ORDER BY OR_NO ASC
+		</select>
+		
+		
+		<select id="searchDetail" parameterType="date" resultMap="orderResultSet">
+		    SELECT *
+		    FROM ORDERS
+	        JOIN PRODUCT_OPTION
+	        ON OR_P_NO = OP_P_NO
+	        JOIN PRODUCT
+	        ON OP_P_NO = P_NO
+	        JOIN PRODUCT_FILE
+	        ON P_NO = PF_P_NO
+            WHERE OR_DATE BETWEEN #{one} AND #{two}
+	        ORDER BY OR_NO ASC  
+		</select>
+	
+	    
+</mapper>	    
+	    

@@ -1,0 +1,5 @@
+package com.kh.brocoli.product.model.service;
+
+public class ProductServiceImpl {
+
+}

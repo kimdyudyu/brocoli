@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberMapper">
+		<resultMap type="Member" id="memberResultSet">
+		
+		<id property="mNO" column="mNO"/>
+		<result property="mId" column="mId"/>
+		<result property="pwd" column="PWD"/>
+		<result property="mName" column="MNAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="gender" column="GENDER"/>
+		<result property="birthDay" column="BIRTHDAY"/>
+		<result property="mGrant" column="MGRANT"/>
+		<result property="mPoint" column="MPOINT"/>
+		<result property="order_Count" column="ORDER_COUNT"/>
+		<result property="order_Price" column="ORDER_PRICE"/>
+		<result property="report_YN" column="REPORT_YN"/>
+		<result property="block_YN" column="BLOCK_YN"/>
+		<result property="block_Content" column="BLOCK_CONTENT"/>
+		<result property="del_Flag_YN" column="DEL_FLAG_YN"/>
+		<result property="del_Date" column="DEL_DATE"/>
+		<result property="enrollDate" column="ENROLLDATE"/>
+		<result property="brand" column="BRAND"/>
+		<result property="brand_NO" column="BRAND_NO"/>
+	
+	</resultMap>
+	
+ 	<resultMap type="Product" id="productResultSet2">
+		<id property="p_NO" column="P_NO"/>
+		<result property="p_Name" column="P_NAME"/>
+		<result property="p_Price" column="P_PRICE"/>
+		<result property="p_Sail_Price" column="P_SAIL_PRICE"/>
+		<result property="p_Last_Price" column="P_LAST_PRICE"/>
+		<result property="p_Bcategory" column="P_BCATEGORY"/>
+		<result property="p_Scategory" column="P_SCATEGORY"/>
+		<result property="p_Comment" column="P_COMMENT"/>
+		<result property="p_Order_Count" column="P_ORDER_COUNT"/>
+		<result property="p_Status" column="P_STATUS"/>
+		<result property="p_Writer" column="P_WRITER"/>
+		<result property="p_Insert_Date" column="P_INSERT_DATE"/>
+		<result property="p_Modify_Id" column="P_MODIFY_ID"/>
+		<result property="p_Modify_Date" column="P_MODIFY_DATE"/>
+		<result property="p_Show_YN" column="P_SHOW_YN"/>
+		<result property="p_Brand_NO" column="P_BRAND_NO"/>
+		
+
+		<collection property="pfList" resultMap="productFileResultSet"/>
+		 <collection property="poList" resultMap="productOptionResultSet"/>
+		<collection property="brList" resultMap="brandResultSet2"/>
+	</resultMap>
+
+	
+	
+	<resultMap type="Brand" id="brandResultSet">
+		<id property="brand_NO" column="BRAND_NO"/>
+		<result property="b_Name" column="B_NAME"/>
+		<result property="b_Logo" column="B_LOGO"/>
+		<result property="b_Logo_ReName" column="B_LOGO_RENAME"/>
+		<result property="b_Business_NO" column="B_BUSINESS_NO"/>
+		<result property="b_Status" column="B_STATUS"/>
+		<result property="b_Enter_Date" column="B_ENTER_DATE"/>
+		<result property="b_Close_Date" column="B_CLOSE_DATE"/>
+		<result property="b_Close_Content" column="B_CLOSE_CONTENT"/>
+		<result property="b_Modify_ID" column="B_MODIFY_ID"/>
+		<result property="b_Modify_Date" column="B_MODIFY_DATE"/>
+		<result property="b_Owner1_ID" column="B_OWNER1_ID"/>
+		<result property="b_Owner2_ID" column="B_OWNER2_ID"/>
+		<result property="b_Owner3_ID" column="B_OWNER3_ID"/>
+		<result property="b_Phone" column="B_PHONE"/>
+		<result property="b_Address" column="B_ADDRESS"/>
+		<result property="b_Owner_Name" column="B_OWNER_NAME"/>
+		<result property="b_Comment" column="B_COMMENT"/>
+		<result property="b_Email1" column="B_EMAIL1"/>
+		<result property="b_Email2" column="B_EMAIL2"/>
+		<result property="b_Email3" column="B_EMAIL3"/>
+		
+		
+		<collection property="pfList" resultMap="productResultSet2"/>
+	</resultMap>
+	
+	<resultMap type="Brand" id="brandResultSet2">
+		<id property="brand_NO" column="BRAND_NO"/>
+		<result property="b_Name" column="B_NAME"/>
+		<result property="b_Logo" column="B_LOGO"/>
+		<result property="b_Logo_ReName" column="B_LOGO_RENAME"/>
+		<result property="b_Business_NO" column="B_BUSINESS_NO"/>
+		<result property="b_Status" column="B_STATUS"/>
+		<result property="b_Enter_Date" column="B_ENTER_DATE"/>
+		<result property="b_Close_Date" column="B_CLOSE_DATE"/>
+		<result property="b_Close_Content" column="B_CLOSE_CONTENT"/>
+		<result property="b_Modify_ID" column="B_MODIFY_ID"/>
+		<result property="b_Modify_Date" column="B_MODIFY_DATE"/>
+		<result property="b_Owner1_ID" column="B_OWNER1_ID"/>
+		<result property="b_Owner2_ID" column="B_OWNER2_ID"/>
+		<result property="b_Owner3_ID" column="B_OWNER3_ID"/>
+		<result property="b_Phone" column="B_PHONE"/>
+		<result property="b_Address" column="B_ADDRESS"/>
+		<result property="b_Owner_Name" column="B_OWNER_NAME"/>
+		<result property="b_Comment" column="B_COMMENT"/>
+		<result property="b_Email1" column="B_EMAIL1"/>
+		<result property="b_Email2" column="B_EMAIL2"/>
+		<result property="b_Email3" column="B_EMAIL3"/>
+		
+	</resultMap>
+	
+	<resultMap id="productOptionResultSet" type="Product_Option">
+		<id property="op_NO" column="OP_NO"/>
+		
+		<result property="option_1" column="OPTION_1"/>
+		<result property="option_2" column="OPTION_2"/>
+		<result property="op_Stock" column="OP_STOCK"/>
+		<result property="op_Rec_Date" column="OP_REC_DATE"/>
+		<result property="op_Status_YN" column="OP_STATUS_YN"/>
+		<result property="op_P_NO" column="OP_P_NO"/>
+		
+		</resultMap>
+	
+	<resultMap type="Product_File" id="productFileResultSet">
+		<id property="pf_NO" column="PF_NO"/>
+		<result property="pf_Img1" column="PF_IMG1"/>
+		<result property="pf_Img1_ReName" column="PF_IMG1_RENAME"/>
+		<result property="pf_Img2" column="PF_IMG2"/>
+		<result property="pf_Img2_ReName" column="PF_IMG2_RENAME"/>
+		<result property="pf_Img3" column="PF_IMG3"/>
+		<result property="pf_Img3_ReName" column="PF_IMG3_RENAME"/>
+		<result property="pf_Img4" column="PF_IMG4"/>
+		<result property="pf_Img4_ReName" column="PF_IMG4_RENAME"/>
+		<result property="pf_Img5" column="PF_IMG5"/>
+		<result property="pf_Img5_ReName" column="PF_IMG5_RENAME"/>
+		<result property="pf_Img6" column="PF_IMG6"/>
+		<result property="pf_Img6_ReName" column="PF_IMG6_RENAME"/>
+		<result property="pf_Dimg1" column="PF_DIMG1"/>
+		<result property="pf_Dimg1_ReName" column="PF_DIMG1_RENAME"/>
+		<result property="pf_Dimg2" column="PF_DIMG2"/>
+		<result property="pf_Dimg2_ReName" column="PF_DIMG2_RENAME"/>
+		<result property="pf_Dimg3" column="PF_DIMG3"/>
+		<result property="pf_Dimg3_ReName" column="PF_DIMG3_RENAME"/>
+		<result property="pf_P_NO" column="PF_P_NO"/>
+	</resultMap>
+	
+	<resultMap type="Magazine2" id="magazineResultSet">
+		<id property="m_NO" column="M_NO"/>
+		<result property="m_ID" column="M_ID"/>
+		<result property="m_Title" column="M_TITLE"/>
+		<result property="m_Comment" column="M_COMMENT"/>
+		<result property="m_Date" column="M_DATE"/>
+		<result property="m_Status" column="M_STATUS"/>
+		<result property="m_Category" column="M_CATEGORY"/>
+		<result property="m_Count" column="M_COUNT"/>
+		<result property="m_Brand_NO" column="M_BRAND_NO"/>
+		<result property="m_Mno" column="M_MNO"/>
+		
+		<collection property="mFile" resultMap="magazineFileResultSet"/>
+	</resultMap>
+	
+	<resultMap type="Magazine2" id="magazineResultSet2">
+		<id property="m_NO" column="M_NO"/>
+		<result property="m_ID" column="M_ID"/>
+		<result property="m_Title" column="M_TITLE"/>
+		<result property="m_Comment" column="M_COMMENT"/>
+		<result property="m_Date" column="M_DATE"/>
+		<result property="m_Status" column="M_STATUS"/>
+		<result property="m_Category" column="M_CATEGORY"/>
+		<result property="m_Count" column="M_COUNT"/>
+		<result property="m_Brand_NO" column="M_BRAND_NO"/>
+		<result property="m_Mno" column="M_MNO"/>
+		
+		<collection property="mFile" resultMap="magazineFileResultSet"/>
+		<collection property="brand" resultMap="brandResultSet"/>
+	</resultMap>
+	
+	<resultMap type="Magazine_File" id="magazineFileResultSet">
+	<id property="mf_NO" column="MF_NO"/>
+	<result property="mf_Img1" column="MF_IMG1"/>
+	<result property="mf_Img1_ReName" column="MF_IMG1_RENAME"/>
+	<result property="mf_Img2" column="MF_IMG2"/>
+	<result property="mf_Img2_ReName" column="MF_IMG2_RENAME"/>
+	<result property="mf_Img3" column="MF_IMG3"/>
+	<result property="mf_Img3_ReName" column="MF_IMG3_RENAME"/>
+	<result property="mf_Img4" column="MF_IMG4"/>
+	<result property="mf_Img4_ReName" column="MF_IMG4_RENAME"/>
+	<result property="mf_Img5" column="MF_IMG5"/>
+	<result property="mf_Img5_ReName" column="MF_IMG5_RENAME"/>
+	<result property="mf_Img6" column="MF_IMG6"/>
+	<result property="mf_Img6_ReName" column="MF_IMG6_RENAME"/>
+	<result property="mf_M_NO" column="MF_M_NO"/>
+			
+	</resultMap>
+
+	
+		
+
+		<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
+		SELECT * 
+		FROM MEMBER
+		WHERE MID=#{mId}
+		AND DEL_FLAG_YN='N'
+		</select>
+		
+
+		<insert id="insertMember" parameterType="Member">
+		 INSERT INTO MEMBER
+    	 VALUES(SEQ_MNO.NEXTVAL,#{mId},#{pwd},#{mName},#{email},#{phone},#{address},#{gender},#{birthDay},DEFAULT,
+    	10000,0,0,DEFAULT,DEFAULT,NULL,DEFAULT,NULL,SYSDATE,DEFAULT,DEFAULT)
+	</insert>
+	
+	<select  id="idCheck" parameterType="String" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MID=#{mId}
+	</select>
+	
+	<select  id="mailCheck" parameterType="String" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE EMAIL=#{email}
+	</select>
+
+
+		
+		<select id="mailCheck2" parameterType="string" resultType="string">
+		SELECT MID
+		FROM MEMBER
+		WHERE EMAIL=#{email}
+		</select>
+		
+		<select id="pwdFind" parameterType="Member" resultType="_int">
+			SELECT COUNT(*)
+			FROM MEMBER
+			WHERE MID = #{mId}
+			AND EMAIL= #{email}
+		</select>
+
+
+	<update id="newPassword" parameterType="Member" >
+
+		update MEMBER
+
+		set PWD = #{pwd}
+
+		where email=#{email} and MID=#{mId}
+
+	</update>
+	
+	<select id="sEnter" parameterType="Entering_Question">
+	INSERT INTO ENTERING_QUESTION 
+	VALUES(SEQ_ENT.NEXTVAL,#{ent_Business_NO},#{ent_Bname},#{ent_Url},#{ent_ID},#{ent_Phone},#{ent_Mail},#{ent_Comment},DEFAULT)
+	</select>
+	
+	<select id="bNameCheck" parameterType="string" resultType="_int">
+	SELECT COUNT(*)
+	FROM BRAND
+	WHERE B_NAME = #{name}
+	</select>
+	
+	<select id="getListCount3" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE M_STATUS = 'Y'
+		ORDER BY M_NO DESC
+	</select>
+	<select id="selectmList"  resultMap="magazineResultSet2">
+	SELECT * 
+		   FROM( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   JOIN BRAND ON BRAND_NO = M_BRAND_NO
+		   ORDER BY M_DATE DESC)
+		   WHERE M_STATUS = 'Y'
+	</select>
+	
+	<update id="updateCount" parameterType="_int">
+		UPDATE MAGAZINE
+		SET M_COUNT = M_COUNT +1
+		WHERE M_NO=#{m_NO}
+	</update>
+	
+	<select  id="selectMagazine" resultMap="magazineResultSet2">
+		SELECT * FROM ( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   JOIN BRAND ON BRAND_NO = M_BRAND_NO
+		   ORDER BY MAGAZINE.M_DATE DESC) 
+		WHERE M_NO=#{m_NO}
+		AND M_STATUS='Y'
+	</select>
+	<select  id="selectM1" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE M_DATE BETWEEN '2020-01-01' AND '2020-01-31'
+	</select>
+	<select  id="selectM2" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE M_DATE BETWEEN '2020-02-01' AND '2020-02-29'
+	</select>
+	<select  id="selectM3" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE M_DATE BETWEEN '2020-03-01' AND '2020-03-31'
+	</select>
+	<select  id="selectM4" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE M_DATE BETWEEN '2020-04-01' AND '2020-04-30'
+	</select>
+	<select  id="selectM5" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE M_DATE BETWEEN '2020-05-01' AND '2020-05-31'
+	</select>
+	<select  id="selectM6" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE M_DATE BETWEEN '2020-06-01' AND '2020-06-30'
+	</select>
+	<select  id="selectM7" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE M_DATE BETWEEN '2020-07-01' AND '2020-07-31'
+	</select>
+	<select  id="selectM8" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE M_DATE BETWEEN '2020-08-01' AND '2020-08-31'
+	</select>
+	<select  id="selectM9" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE M_DATE BETWEEN '2020-09-01' AND '2020-09-30'
+	</select>
+	<select  id="selectM10" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE M_DATE BETWEEN '2020-10-01' AND '2020-10-31'
+	</select>
+	<select  id="selectM11" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE M_DATE BETWEEN '2020-11-01' AND '2020-11-30'
+	</select>
+	<select  id="selectM12" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE M_DATE BETWEEN '2020-12-01' AND '2020-12-31'
+	</select>
+	
+	<select id="selectm1List"  resultMap="magazineResultSet">
+	SELECT * 
+		   FROM( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   ORDER BY M_DATE DESC)
+		   WHERE M_STATUS = 'Y'
+		   AND M_DATE BETWEEN '2020-01-01' AND '2020-01-31'
+	</select>
+	
+	<select id="selectm2List"  resultMap="magazineResultSet">
+	SELECT * 
+		   FROM( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   ORDER BY M_DATE DESC)
+		   WHERE M_STATUS = 'Y'
+		   AND M_DATE BETWEEN '2020-02-01' AND '2020-02-29'
+	</select>
+	
+	<select id="selectm3List"  resultMap="magazineResultSet">
+	SELECT * 
+		   FROM( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   ORDER BY M_DATE DESC)
+		   WHERE M_STATUS = 'Y'
+		   AND M_DATE BETWEEN '2020-03-01' AND '2020-03-31'
+	</select>
+	
+	<select id="selectm4List"  resultMap="magazineResultSet">
+	SELECT * 
+		   FROM( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   ORDER BY M_DATE DESC)
+		   WHERE M_STATUS = 'Y'
+		   AND M_DATE BETWEEN '2020-04-01' AND '2020-04-30'
+	</select>
+	
+	<select id="selectm5List"  resultMap="magazineResultSet">
+	SELECT * 
+		   FROM( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   ORDER BY M_DATE DESC)
+		   WHERE M_STATUS = 'Y'
+		   AND  M_DATE BETWEEN '2020-05-01' AND '2020-05-31'
+	</select>
+	
+	<select id="selectm6List"  resultMap="magazineResultSet">
+	SELECT * 
+		   FROM( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   ORDER BY M_DATE DESC)
+		   WHERE M_STATUS = 'Y'
+		   AND M_DATE BETWEEN '2020-06-01' AND '2020-06-30'
+	</select>
+	
+	<select id="selectm7List"  resultMap="magazineResultSet">
+	SELECT * 
+		   FROM( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   ORDER BY M_DATE DESC)
+		   WHERE M_STATUS = 'Y'
+		   AND M_DATE BETWEEN '2020-07-01' AND '2020-07-31'
+	</select>
+	
+	<select id="selectm8List"  resultMap="magazineResultSet">
+	SELECT * 
+		   FROM( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   ORDER BY M_DATE DESC)
+		   WHERE M_STATUS = 'Y'
+		   AND M_DATE BETWEEN '2020-08-01' AND '2020-08-31'
+	</select>
+	
+	<select id="selectm9List"  resultMap="magazineResultSet">
+	SELECT * 
+		   FROM( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   ORDER BY M_DATE DESC)
+		   WHERE M_STATUS = 'Y'
+		   AND M_DATE BETWEEN '2020-09-01' AND '2020-09-30'
+	</select>
+	
+	<select id="selectm10List"  resultMap="magazineResultSet">
+	SELECT * 
+		   FROM( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   ORDER BY M_DATE DESC)
+		   WHERE M_STATUS = 'Y'
+		   AND M_DATE BETWEEN '2020-10-01' AND '2020-10-31'
+	</select>
+	
+	<select id="selectm11List"  resultMap="magazineResultSet">
+	SELECT * 
+		   FROM( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   ORDER BY M_DATE DESC)
+		   WHERE M_STATUS = 'Y'
+		   AND M_DATE BETWEEN '2020-11-01' AND '2020-11-30'
+	</select>
+	
+	<select id="selectm12List"  resultMap="magazineResultSet">
+	SELECT * 
+		   FROM( SELECT * FROM MAGAZINE 
+		   JOIN MAGAZINE_FILE ON M_NO = MF_M_NO
+		   ORDER BY M_DATE DESC)
+		   WHERE M_STATUS = 'Y'
+		   AND M_DATE BETWEEN '2020-12-01' AND '2020-12-31'
+	</select>
+	    
+
+<select id="pDetail" resultMap="productResultSet2">
+	SELECT P.P_NO,P.P_ORDER_COUNT,PF.PF_IMG1_RENAME,P_BCATEGORY,P_SCATEGORY
+	 ,TO_CHAR( P_PRICE , '999,999,999,999,999') AS P_PRICE
+        ,TO_CHAR( P_SAIL_PRICE , '999,999,999,999,999') AS P_SAIL_PRICE 
+		  ,P.P_NAME,TO_CHAR( P.P_LAST_PRICE , '999,999,999,999,999') AS P_LAST_PRICE
+    FROM PRODUCT P
+    JOIN PRODUCT_FILE PF
+    ON P.P_NO =  PF.PF_P_NO
+    WHERE P.P_STATUS='1'
+    AND P.P_BRAND_NO=#{mno}
+    ORDER BY P.P_LAST_PRICE
+	</select>
+	
+	<select id="searchBrand" resultMap="brandResultSet2">
+		 SELECT *
+	    FROM BRAND
+	    WHERE UPPER(B_NAME) LIKE UPPER('%'||#{keyword}||'%')
+	    AND B_STATUS = 'Y'
+	</select>
+	<select id="searchProduct" resultMap="productResultSet">
+		SELECT P.P_NO,P.P_ORDER_COUNT,PF.PF_IMG1_RENAME,P_BCATEGORY,P_SCATEGORY
+	 ,TO_CHAR( P_PRICE , '999,999,999,999,999') AS P_PRICE
+        ,TO_CHAR( P_SAIL_PRICE , '999,999,999,999,999') AS P_SAIL_PRICE 
+		  ,P.P_NAME,TO_CHAR( P.P_LAST_PRICE , '999,999,999,999,999') AS P_LAST_PRICE
+	    FROM PRODUCT P
+	    JOIN PRODUCT_FILE PF
+	    ON P.P_NO =  PF.PF_P_NO
+	    WHERE P.P_STATUS='1'
+	    AND P.P_NAME LIKE UPPER('%'||#{keyword}||'%')
+	    ORDER BY P.P_LAST_PRICE
+	</select>
+	
+	<select id="searchBrand2" parameterType="hashmap" resultMap="brandResultSet2">
+		SELECT *
+		FROM (SELECT *
+	    FROM BRAND
+	    WHERE UPPER(B_NAME) LIKE UPPER('%'||#{keyword}||'%')
+	    AND B_STATUS = 'Y')
+	    WHERE UPPER(B_NAME) LIKE UPPER('%'||#{keyword2}||'%')
+	</select>
+	<select id="searchProduct2" parameterType="hashmap" resultMap="productResultSet2" >
+		SELECT *
+		FROM (SELECT P.P_NO,P.P_ORDER_COUNT,PF.PF_IMG1_RENAME,P_BCATEGORY,P_SCATEGORY
+		 ,TO_CHAR( P_PRICE , '999,999,999,999,999') AS P_PRICE
+        ,TO_CHAR( P_SAIL_PRICE , '999,999,999,999,999') AS P_SAIL_PRICE 
+		  ,P.P_NAME,TO_CHAR( P.P_LAST_PRICE , '999,999,999,999,999') AS P_LAST_PRICE
+	    FROM PRODUCT P
+	    JOIN PRODUCT_FILE PF
+	    ON P.P_NO =  PF.PF_P_NO
+	    WHERE P.P_STATUS='1'
+	    AND UPPER(P.P_NAME) LIKE UPPER('%'||#{keyword}||'%')
+	    ORDER BY P.P_LAST_PRICE) P
+	    WHERE UPPER(P.P_NAME) LIKE UPPER('%'||#{keyword2}||'%')
+	</select>
+	
+	<resultMap type="trackOrders" id="orderResultSet2">
+		
+		<id property="or_NO" column="OR_NO"/>
+		<result property="or_Date" column="OR_DATE"/>
+		<result property="or_Pname" column="OR_PNAME"/>
+		<result property="or_Option1" column="OR_OPTION1"/>
+		<result property="or_Option2" column="OR_OPTION2"/>
+		<result property="or_Amount" column="OR_AMOUNT"/>
+		<result property="or_Address" column="OR_ADDRESS"/>
+		<result property="or_Message" column="OR_MESSAGE"/>
+		<result property="or_Price" column="OR_PRICE"/>
+		<result property="or_Status" column="OR_STATUS"/>
+		<result property="or_Deliver_Num" column="OR_DELIVER_NUM"/>
+		<result property="or_Deliver_Vender" column="OR_DELIVER_VENDER"/>
+		<result property="or_Mno" column="OR_MNO"/>
+		<result property="or_Recip_Name" column="OR_RECIP_NAME"/>
+		<result property="or_Phone" column="OR_PHONE"/>
+		<result property="or_P_NO" column="OR_P_NO"/>
+		<result property="or_Brand_NO" column="OR_BRAND_NO"/>
+	</resultMap>
+	
+	<select id="recentCheck" parameterType="_int" resultMap="orderResultSet2">
+	<![CDATA[
+		SELECT *
+		FROM ORDERS
+		WHERE OR_DATE = (SELECT  MAX(OR_DATE)
+		FROM ORDERS
+		WHERE OR_MNO = #{mno})
+		]]>
+	</select>
+	
+	<resultMap type="Product" id="productResultSet">
+		<id property="p_NO" column="P_NO"/>
+		<result property="p_Name" column="P_NAME"/>
+		<result property="p_Price" column="P_PRICE"/>
+		<result property="p_Sail_Price" column="P_SAIL_PRICE"/>
+		<result property="p_Last_Price" column="P_LAST_PRICE"/>
+		<result property="p_Bcategory" column="P_BCATEGORY"/>
+		<result property="p_Scategory" column="P_SCATEGORY"/>
+		<result property="p_Comment" column="P_COMMENT"/>
+		<result property="p_Order_Count" column="P_ORDER_COUNT"/>
+		<result property="p_Status" column="P_STATUS"/>
+		<result property="p_Writer" column="P_WRITER"/>
+		<result property="p_Insert_Date" column="P_INSERT_DATE"/>
+		<result property="p_Modify_Id" column="P_MODIFY_ID"/>
+		<result property="p_Modify_Date" column="P_MODIFY_DATE"/>
+		<result property="p_Show_YN" column="P_SHOW_YN"/>
+		<result property="p_Brand_NO" column="P_BRAND_NO"/>
+
+		<collection property="pfList" resultMap="productFileResultSet"/>
+	</resultMap>
+	
+	<resultMap type="OrderAdd" id="OrderAddResultSet">
+	
+		<id property="oa_NO" column="OA_NO"/>
+		
+		<result property="oa_Option_1" column="OA_OPTION_1"/>
+		<result property="oa_Option_2" column="OA_OPTION_2"/>
+		<result property="oa_Amount" column="OA_AMOUNT"/>
+		<result property="oa_Mno" column="OA_MNO"/>
+		<result property="oa_P_NO" column="OA_P_NO"/>
+	
+		<collection property="productList" resultMap="productResultSet"/>
+		<collection property="p_File" resultMap="productFileResultSet"/>
+	</resultMap>
+	
+	<select id="cartCheck" resultMap="OrderAddResultSet">
+		SELECT * 
+        FROM ORDERADD O
+        JOIN PRODUCT_FILE PF ON O.OA_P_NO = PF.PF_P_NO
+        JOIN PRODUCT_OPTION PO ON PF.PF_P_NO = PO.OP_P_NO
+        JOIN PRODUCT P ON PO.OP_P_NO= P.P_NO
+        WHERE O.OA_MNO = #{mno}
+	</select>
+	
+	<delete id="deleteOrder" parameterType="_int">
+		DELETE FROM ORDERADD
+		WHERE OA_NO = #{ct_NO}
+	</delete>
+	
+	<delete id="deleteOa" parameterType="_int">
+		DELETE FROM ORDERADD
+		WHERE OA_MNO = #{mno}
+	</delete>
+	<update id="pupdateMember" parameterType="hashmap">
+		UPDATE MEMBER
+		SET MPOINT = MPOINT + #{total2}
+		WHERE MNO = #{mno}
+	</update>
+	
+	<update id="pupdateMemberCount" parameterType="_int">
+			UPDATE MEMBER
+			SET ORDER_COUNT = ORDER_COUNT +1
+			WHERE MNO=#{mno}
+	</update>
+	
+	<update id="pupdateMemberPrice" parameterType="hashmap">
+			UPDATE MEMBER
+			SET ORDER_PRICE = ORDER_PRICE + #{total}
+			WHERE MNO = #{mno}
+	</update>
+	<insert id ="insertOrder" parameterType="Orders">
+	INSERT INTO ORDERS VALUES(SEQ_OR_NO.NEXTVAL,SYSDATE,#{or_Pname},#{or_Option1},#{or_Option2},#{or_Amount},#{or_Address},#{or_Message},#{or_Price},
+	1,1,'한진택배',#{or_Mno},#{or_Recip_Name},#{or_Phone},#{or_P_NO},#{or_Brand_NO})
+	</insert>
+</mapper>

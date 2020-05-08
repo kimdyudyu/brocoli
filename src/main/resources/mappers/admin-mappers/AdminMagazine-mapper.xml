@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminMagazine">
+	<resultMap id="magazineResultSet" type="Magazine">
+		<id property="m_NO" column="M_NO"/>
+		<result property="m_ID" column="M_ID"/>
+		<result property="m_Title" column="M_TITLE"/>
+		<result property="m_Comment" column="M_COMMENT"/>
+		<result property="m_Date" column="M_DATE"/>
+		<result property="m_Status" column="M_STATUS"/>
+		<result property="m_Category" column="M_CATEGORY"/>
+		<result property="m_Count" column="M_COUNT"/>
+		<result property="m_Brand_NO" column="M_BRAND_NO"/>
+		<result property="m_Mno" column="M_MNO"/>
+		
+		<collection property="m_Magazine_File" resultMap="magazineFileResultSet"/>
+		<collection property="m_Brand" resultMap="brandResultSet"/>
+		<collection property="m_Member" resultMap="memberResultSet"/>
+	</resultMap>
+	
+	<resultMap id="magazineFileResultSet" type="Magazine_File">
+		<id property="mf_NO" column="MF_NO"/>
+		<result property="mf_Img1" column="MF_IMG1"/>
+		<result property="mf_Img1_ReName" column="MF_IMG1_RENAME"/>
+		<result property="mf_Img2" column="MF_IMG2"/>
+		<result property="mf_Img2_ReName" column="MF_IMG2_RENAME"/>
+		<result property="mf_Img3" column="MF_IMG3"/>
+		<result property="mf_Img3_ReName" column="MF_IMG3_RENAME"/>
+		<result property="mf_Img4" column="MF_IMG4"/>
+		<result property="mf_Img4_ReName" column="MF_IMG4_RENAME"/>
+		<result property="mf_Img5" column="MF_IMG5"/>
+		<result property="mf_Img5_ReName" column="MF_IMG5_RENAME"/>
+		<result property="mf_Img6" column="MF_IMG6"/>
+		<result property="mf_Img6_ReName" column="MF_IMG6_RENAME"/>
+	</resultMap>
+	
+	<resultMap id="brandResultSet" type="Brand">
+		<id property="brand_NO" column="BRAND_NO"/>
+		<result property="b_Name" column="B_NAME"/>
+		<result property="b_Logo" column="B_LOGO"/>
+		<result property="b_Logo_ReName" column="B_LOGO_RENAME"/>
+		<result property="b_Business_NO" column="B_BUSINESS_NO"/>
+		<result property="b_Status" column="B_STATUS"/>
+		<result property="b_Enter_Date" column="B_ENTER_DATE"/>
+		<result property="b_Close_Date" column="B_CLOSE_DATE"/>
+		<result property="b_Close_Content" column="B_CLOSE_CONTENT"/>
+		<result property="b_Modify_ID" column="B_MODIFY_ID"/>
+		<result property="b_Modify_Date" column="B_MODIFY_DATE"/>
+		<result property="b_Owner1_ID" column="B_OWNER1_ID"/>
+		<result property="b_Owner2_ID" column="B_OWNER2_ID"/>
+		<result property="b_Owner3_ID" column="B_OWNER3_ID"/>
+		<result property="b_Phone" column="B_PHONE"/>
+		<result property="b_Address" column="B_ADDRESS"/>
+		<result property="b_Owner_Name" column="B_OWNER_NAME"/>
+		<result property="b_Comment" column="B_COMMENT"/>
+		<result property="b_Email1" column="B_EMAIL1"/>
+		<result property="b_Email2" column="B_EMAIL2"/>
+		<result property="b_Email3" column="B_EMAIL3"/>
+	</resultMap>
+	
+	<resultMap id="memberResultSet" type="Member">
+		<id property="mNO" column="MNO"/>
+		<result property="mId" column="MID"/>
+		<result property="pwd" column="PWD"/>
+		<result property="mName" column="MNAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="gender" column="GENDER"/>
+		<result property="birthDay" column="BIRTHDAY"/>
+		<result property="mGrant" column="MGRANT"/>
+		<result property="mPoint" column="MPOINT"/>
+		<result property="order_Count" column="ORDER_COUNT"/>
+		<result property="order_Price" column="ORDER_PRICE"/>
+		<result property="report_YN" column="REPORT_YN"/>
+		<result property="block_YN" column="BLOCK_YN"/>
+		<result property="block_Content" column="BLOCK_CONTENT"/>
+		<result property="del_Flag_YN" column="DEL_FLAG_YN"/>
+		<result property="del_Date" column="DEL_DATE"/>
+		<result property="enrollDate" column="ENROLLDATE"/>
+		<result property="brand" column="BRAND"/>
+		<result property="brand_NO" column="BRAND_NO"/>
+	</resultMap>
+	
+	<select id="magazineList" parameterType="Magazine" resultMap="magazineResultSet">
+		SELECT * 
+		FROM MAGAZINE 
+		JOIN BRAND ON M_BRAND_NO = BRAND_NO
+		JOIN MEMBER ON M_MNO = MNO
+		WHERE M_STATUS = 'N'
+	</select>
+	
+	<select id="magazineManagementDetail" parameterType="Magazine" resultMap="magazineResultSet">
+		SELECT * 
+		FROM MAGAZINE 
+		JOIN BRAND ON M_BRAND_NO = BRAND_NO
+		JOIN MEMBER ON M_MNO = MNO
+		AND M_NO= #{m_NO}
+	</select>
+	
+	<update id="magazineEnroll" >
+		UPDATE MAGAZINE
+		SET M_STATUS = 'Y'
+		WHERE M_NO= #{m_NO}
+	</update>
+	
+	<select id="magazineUploadList" parameterType="Magazine" resultMap="magazineResultSet">
+		SELECT * 
+		FROM MAGAZINE 
+		JOIN BRAND ON M_BRAND_NO = BRAND_NO
+		JOIN MEMBER ON M_MNO = MNO
+		WHERE M_STATUS = 'Y' OR M_STATUS = 'D'
+		ORDER BY M_NO DESC
+	</select>
+	
+	<update id="magazineDelete" parameterType="Magazine" >
+		UPDATE MAGAZINE
+		SET M_STATUS = 'D'
+		WHERE M_NO= #{m_NO}
+	</update>
+</mapper>

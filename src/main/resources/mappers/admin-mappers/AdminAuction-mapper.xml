@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminAuction">
+
+	<resultMap type="Auction" id="auctionResultSet">
+		<id property="ac_No" column="AC_NO"/>
+		<result property="ac_Banner_NO" column="AC_BANNER_NO"/>
+		<result property="ac_ID" column="AC_ID"/>
+		<result property="ac_Price" column="AC_PRICE"/>
+		<result property="ac_Date" column="AC_DATE"/>
+		<result property="ac_Status" column="AC_STATUS"/>
+		<result property="ac_Brand" column="AC_BRAND"/>
+		<result property="ac_Comment" column="AC_COMMENT"/>
+		<result property="ac_Img" column="AC_IMG"/>
+		<result property="ac_Img_Rename" column="AC_IMG_RENAME"/>
+		<result property="ac_Brand_NO" column="AC_BRAND_NO"/>	
+	</resultMap>
+	
+	<select id="auctionList" resultMap="auctionResultSet" parameterType="Auction">
+		SELECT *
+		FROM AUCTION
+	</select>
+	
+	<update id="auctionWin">
+		UPDATE AUCTION
+		SET AC_STATUS='3', AC_COMMENT=#{ac_CommentText}
+		WHERE AC_NO=#{ac_No}
+	</update>
+	
+	<update id="auctionFail">
+		UPDATE AUCTION
+		SET AC_STATUS='2', AC_COMMENT=#{ac_CommentText}
+		WHERE AC_NO=#{ac_No}
+	</update>
+
+</mapper>

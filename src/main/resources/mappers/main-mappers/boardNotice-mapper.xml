@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardNotice-mapper">
+
+	<!-- resultMap -->
+	<resultMap type="Notice" id="boardnoticeResultSet" >
+	
+		<id property="n_No" column="N_NO"/>
+		<result property="n_Writer" column="N_WRITER"/>
+		<result property="n_Title" column="N_TITLE"/>
+		<result property="n_Content" column="N_CONTENT"/>
+		<result property="n_Date" column="N_DATE"/>
+		<result property="n_Count" column="N_COUNT"/>
+		<result property="n_Modify_Date" column="N_MODIFY_DATE"/>
+		<result property="n_Status" column="N_STATUS"/>
+		<result property="n_Img" column="N_IMG"/>
+		<result property="n_Img_ReName" column="N_IMG_RENAME"/>
+		<result property="n_Mno" column="N_MNO"/>
+		<result property="n_MID" column="MID"/>
+		
+	</resultMap>
+	
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTICE
+		WHERE N_STATUS='Y'
+	</select>
+	
+	<select id="selectList" resultMap="boardnoticeResultSet">
+		SELECT *
+		FROM NOTICE
+		WHERE N_STATUS='Y'
+		ORDER BY N_NO DESC
+	</select>
+	
+	<insert id="insertBoardNotice" parameterType="Notice">
+		INSERT INTO NOTICE
+		VALUES(SEQ_N_NO.NEXTVAL,#{n_Writer},#{n_Title},#{n_Content},SYSDATE,DEFAULT,SYSDATE,DEFAULT,#{n_Img},#{n_Img_ReName},#{n_Mno})
+	</insert>
+	
+	<update id="updateCount" parameterType="_int">
+		UPDATE NOTICE
+		SET N_COUNT = N_COUNT + 1
+		WHERE N_NO=#{n_No}	
+	</update>
+	
+	<select id="selectBoardNotice" resultMap="boardnoticeResultSet">
+		SELECT 
+			N.N_NO
+		   ,N.N_WRITER
+		   ,N.N_TITLE
+		   ,N.N_CONTENT
+		   ,N.N_DATE
+		   ,N.N_COUNT
+		   ,N.N_MODIFY_DATE
+		   ,N.N_STATUS
+		   ,N.N_IMG,N
+		   .N_IMG_RENAME
+			,M.MID
+		FROM NOTICE N
+			INNER JOIN MEMBER M
+			ON(M.MNO = N.N_MNO)
+		WHERE N_No=#{n_No}
+		AND N.N_STATUS='Y'
+	</select>
+	
+	<update id="updateBoardNotice" parameterType="Notice">
+		UPDATE NOTICE
+		SET N_WRITER=#{n_Writer},N_TITLE=#{n_Title},N_CONTENT=#{n_Content},
+		    N_MODIFY_DATE=SYSDATE,N_IMG=#{n_Img},N_IMG_RENAME=#{n_Img_ReName}
+		WHERE N_NO=#{n_No}	
+	</update>
+	
+	<update id="deleteBoardNotice" parameterType="_int">
+		UPDATE NOTICE
+		SET N_STATUS='N'
+		WHERE N_NO=#{n_No}	
+	</update>
+	
+	<select id="getSearchResultListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTICE
+		WHERE N_STATUS='Y'
+		<!-- 1. if문으로 하는 방법 -->
+		<if test="writer != null">
+			AND N_WRITER LIKE '%' || #{writer} || '%'
+		</if>
+		<if test="title != null">
+			AND N_TITLE LIKE '%' || #{title} || '%'
+		</if>
+		<if test="content != null">
+			AND N_CONTENT LIKE '%' || #{content} || '%'
+		</if>
+	</select>
+	
+	<select id="selectSearchResultList" resultMap="boardnoticeResultSet">	
+		<!-- 
+			쿼리문을 평소와 같이 작성한다면
+			안에 < 라는 기호가 포함된다면 연산자로 인식하지 않고 태그로 인식해버린다.
+			-> 이걸 해결해주기 위해서 쿼리문을 CDATE주석으로 감싸는 경우도 있다.
+			<![CDATE[...]]>
+		 -->	
+		SELECT *
+		FROM NOTICE
+		WHERE N_STATUS='Y'
+		<!-- 2. choose, when, otherwise -->
+		<choose>
+			<when test="writer != null">
+				AND N_WRITER LIKE '%' || #{writer} ||'%'
+			</when>
+			<when test="title != null">
+				AND N_TITLE LIKE '%' || #{title} ||'%'
+			</when>
+			<otherwise>
+				AND N_CONTENT LIKE '%' || #{content} ||'%'
+			</otherwise>
+		</choose>
+		ORDER BY N_NO DESC
+	</select>
+</mapper>
+	

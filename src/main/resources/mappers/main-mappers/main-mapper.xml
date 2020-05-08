@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="mainMapper">
+	<resultMap type="Auction" id="auctionResultSet">
+		<id property="ac_No" column="AC_NO"/>
+	
+		<result property="ac_Banner_NO" column="AC_BANNER_NO"/>
+		<result property="ac_ID" column="AC_ID"/>
+		<result property="ac_Price" column="AC_PRICE"/>
+		<result property="ac_Date" column="AC_DATE"/>
+		<result property="ac_Status" column="AC_STATUS"/>
+		<result property="ac_Brand" column="AC_BRAND"/>
+		<result property="ac_Comment" column="AC_COMMENT"/>
+		<result property="ac_Img" column="AC_IMG"/>
+		<result property="ac_Img_Rename" column="AC_IMG_RENAME"/>
+		<result property="ac_Brand_NO" column="AC_BRAND_NO"/>
+	
+	</resultMap>
+	
+	<resultMap type="ProductDetail" id="productDetailResultSet">
+		<id property="p_NO" column="P_NO"/>
+		<result property="p_Name" column="P_NAME"/>
+		<result property="p_Price" column="P_PRICE"/>
+		<result property="p_Sail_Price" column="P_SAIL_PRICE"/>
+		<result property="p_Last_Price" column="P_LAST_PRICE"/>
+		<result property="p_Bcategory" column="P_BCATEGORY"/>
+		<result property="p_Scategory" column="P_SCATEGORY"/>
+		<result property="p_Comment" column="P_COMMENT"/>
+		<result property="p_Order_Count" column="P_ORDER_COUNT"/>
+		<result property="p_Status" column="P_STATUS"/>
+		<result property="p_Writer" column="P_WRITER"/>
+		<result property="p_Insert_Date" column="P_INSERT_DATE"/>
+		<result property="p_Modify_Id" column="P_MODIFY_ID"/>
+		<result property="p_Modify_Date" column="P_MODIFY_DATE"/>
+		<result property="p_Show_YN" column="P_SHOW_YN"/>
+		<result property="p_Brand_NO" column="P_BRAND_NO"/>
+		<result property="pf_NO" column="PF_NO"/>
+		<result property="pf_Img1" column="PF_IMG1"/>
+		<result property="pf_Img1_ReName" column="PF_IMG1_RENAME"/>
+		<result property="pf_Img2" column="PF_IMG2"/>
+		<result property="pf_Img2_ReName" column="PF_IMG2_RENAME"/>
+		<result property="pf_Img3" column="PF_IMG3"/>
+		<result property="pf_Img3_ReName" column="PF_IMG3_RENAME"/>
+		<result property="pf_Img4" column="PF_IMG4"/>
+		<result property="pf_Img4_ReName" column="PF_IMG4_RENAME"/>
+		<result property="pf_Img5" column="PF_IMG5"/>
+		<result property="pf_Img5_ReName" column="PF_IMG5_RENAME"/>
+		<result property="pf_Img6" column="PF_IMG6"/>
+		<result property="pf_Img6_ReName" column="PF_IMG6_RENAME"/>
+		<result property="pf_Dimg1" column="PF_DIMG1"/>
+		<result property="pf_Dimg1_ReName" column="PF_DIMG1_RENAME"/>
+		<result property="pf_Dimg2" column="PF_DIMG2"/>
+		<result property="pf_Dimg2_ReName" column="PF_DIMG2_RENAME"/>
+		<result property="pf_Dimg3" column="PF_DIMG3"/>
+		<result property="pf_Dimg3_ReName" column="PF_DIMG3_RENAME"/>
+		<result property="pf_P_NO" column="PF_P_NO"/>
+		<result property="op_NO" column="OP_NO"/>
+		<result property="option_1" column="OPTION_1"/>
+		<result property="option_2" column="OPTION_2"/>
+		<result property="op_Stock" column="OP_STOCK"/>
+		<result property="op_Rec_Date" column="OP_REC_DATE"/>
+		<result property="op_Status_YN" column="OP_STATUS_YN"/>
+		<result property="op_P_NO" column="OP_P_NO"/>
+		<result property="brand_NO" column="BRAND_NO"/>
+		<result property="b_Name" column="B_NAME"/>
+		<result property="b_Logo" column="B_LOGO"/>
+		<result property="b_Logo_ReName" column="B_LOGO_RENAME"/>
+		<result property="b_Owner_Name" column="B_OWNER_NAME"/>
+		<result property="b_Phone" column="B_PHONE"/>
+		<result property="b_Comment" column="B_COMMENT"/>
+	
+	</resultMap>
+	
+	<resultMap type="Product" id="productResultSet">
+		<id property="p_NO" column="P_NO"/>
+		<result property="p_Name" column="P_NAME"/>
+		<result property="p_Price" column="P_PRICE"/>
+		<result property="p_Sail_Price" column="P_SAIL_PRICE"/>
+		<result property="p_Last_Price" column="P_LAST_PRICE"/>
+		<result property="p_Bcategory" column="P_BCATEGORY"/>
+		<result property="p_Scategory" column="P_SCATEGORY"/>
+		<result property="p_Comment" column="P_COMMENT"/>
+		<result property="p_Order_Count" column="P_ORDER_COUNT"/>
+		<result property="p_Status" column="P_STATUS"/>
+		<result property="p_Writer" column="P_WRITER"/>
+		<result property="p_Insert_Date" column="P_INSERT_DATE"/>
+		<result property="p_Modify_Id" column="P_MODIFY_ID"/>
+		<result property="p_Modify_Date" column="P_MODIFY_DATE"/>
+		<result property="p_Show_YN" column="P_SHOW_YN"/>
+		<result property="p_Brand_NO" column="P_BRAND_NO"/>
+		
+		<collection property="pfList" resultMap="productFileResultSet"/>
+		<collection property="poList" resultMap="productOptionResultSet"/>
+		<collection property="brList" resultMap="brandResultSet"/>
+	</resultMap>
+	
+	<resultMap type="Product_File" id="productFileResultSet">
+		<id property="pf_NO" column="PF_NO"/>
+		<result property="pf_Img1" column="PF_IMG1"/>
+		<result property="pf_Img1_ReName" column="PF_IMG1_RENAME"/>
+		<result property="pf_Img2" column="PF_IMG2"/>
+		<result property="pf_Img2_ReName" column="PF_IMG2_RENAME"/>
+		<result property="pf_Img3" column="PF_IMG3"/>
+		<result property="pf_Img3_ReName" column="PF_IMG3_RENAME"/>
+		<result property="pf_Img4" column="PF_IMG4"/>
+		<result property="pf_Img4_ReName" column="PF_IMG4_RENAME"/>
+		<result property="pf_Img5" column="PF_IMG5"/>
+		<result property="pf_Img5_ReName" column="PF_IMG5_RENAME"/>
+		<result property="pf_Img6" column="PF_IMG6"/>
+		<result property="pf_Img6_ReName" column="PF_IMG6_RENAME"/>
+		<result property="pf_Dimg1" column="PF_DIMG1"/>
+		<result property="pf_Dimg1_ReName" column="PF_DIMG1_RENAME"/>
+		<result property="pf_Dimg2" column="PF_DIMG2"/>
+		<result property="pf_Dimg2_ReName" column="PF_DIMG2_RENAME"/>
+		<result property="pf_Dimg3" column="PF_DIMG3"/>
+		<result property="pf_Dimg3_ReName" column="PF_DIMG3_RENAME"/>
+		<result property="pf_P_NO" column="PF_P_NO"/>
+	</resultMap>
+	
+	<resultMap type="Brand" id="brandResultSet">
+		<id property="brand_NO" column="BRAND_NO"/>
+		<result property="b_Name" column="B_NAME"/>
+		<result property="b_Logo" column="B_LOGO"/>
+		<result property="b_Logo_ReName" column="B_LOGO_RENAME"/>
+		<result property="b_Business_NO" column="B_BUSINESS_NO"/>
+		<result property="b_Status" column="B_STATUS"/>
+		<result property="b_Enter_Date" column="B_ENTER_DATE"/>
+		<result property="b_Close_Date" column="B_CLOSE_DATE"/>
+		<result property="b_Close_Content" column="B_CLOSE_CONTENT"/>
+		<result property="b_Modify_ID" column="B_MODIFY_ID"/>
+		<result property="b_Modify_Date" column="B_MODIFY_DATE"/>
+		<result property="b_Owner1_ID" column="B_OWNER1_ID"/>
+		<result property="b_Owner2_ID" column="B_OWNER2_ID"/>
+		<result property="b_Owner3_ID" column="B_OWNER3_ID"/>
+		<result property="b_Phone" column="B_PHONE"/>
+		<result property="b_Address" column="B_ADDRESS"/>
+		<result property="b_Owner_Name" column="B_OWNER_NAME"/>
+		<result property="b_Comment" column="B_COMMENT"/>
+		<result property="b_Email1" column="B_EMAIL1"/>
+		<result property="b_Email2" column="B_EMAIL2"/>
+		<result property="b_Email3" column="B_EMAIL3"/>
+		
+		
+		<collection property="pfList" resultMap="productResultSet"/>
+	</resultMap>
+	
+		<resultMap id="productOptionResultSet" type="Product_Option">
+		<id property="op_NO" column="OP_NO"/>
+		
+		<result property="option_1" column="OPTION_1"/>
+		<result property="option_2" column="OPTION_2"/>
+		<result property="op_Stock" column="OP_STOCK"/>
+		<result property="op_Rec_Date" column="OP_REC_DATE"/>
+		<result property="op_Status_YN" column="OP_STATUS_YN"/>
+		<result property="op_P_NO" column="OP_P_NO"/>
+		
+		</resultMap>
+		
+	<resultMap type="Product" id="dayproductResutSet">
+		<id property="p_NO" column="P_NO"/>
+		<result property="p_Name" column="P_NAME"/>
+		<result property="p_Price" column="P_PRICE"/>
+		<result property="p_Sail_Price" column="P_SAIL_PRICE"/>
+		<result property="p_Last_Price" column="P_LAST_PRICE"/>
+		<result property="p_Bcategory" column="P_BCATEGORY"/>
+		<result property="p_Scategory" column="P_SCATEGORY"/>
+		<result property="p_Comment" column="P_COMMENT"/>
+		<result property="p_Order_Count" column="P_ORDER_COUNT"/>
+		<result property="p_Status" column="P_STATUS"/>
+		<result property="p_Writer" column="P_WRITER"/>
+		<result property="p_Insert_Date" column="P_INSERT_DATE"/>
+		<result property="p_Modify_Id" column="P_MODIFY_ID"/>
+		<result property="p_Modify_Date" column="P_MODIFY_DATE"/>
+		<result property="p_Show_YN" column="P_SHOW_YN"/>
+		<result property="p_Brand_NO" column="P_BRAND_NO"/>
+		<result property="or_NO" column="OR_NO"/>
+		<result property="or_Date" column="OR_DATE"/>
+		<result property="or_P_NO" column="OR_P_NO"/>
+		
+		<collection property="pfList" resultMap="productFileResultSet"/>
+		<collection property="poList" resultMap="productOptionResultSet"/>
+		<collection property="brList" resultMap="brandResultSet"/>
+	</resultMap>
+	
+	
+	<resultMap type="QnAComment" id="QnAResultSet">
+		<id property="pq_No" column="PQ_NO"/>
+
+		<result property="pq_Writer" column="PQ_WRITER"/>
+		<result property="pq_Id" column="PQ_ID"/>
+		<result property="pq_Content" column="PQ_CONTENT"/>
+		<result property="pq_Date" column="PQ_DATE"/>
+		<result property="pq_Modify_Date" column="PQ_MODIFY_DATE"/>
+		<result property="pq_Count" column="PQ_COUNT"/>
+		<result property="pq_Check" column="PQ_CHECK"/>
+		<result property="pq_Status" column="PQ_STAUTS"/>
+		<result property="pq_Img1" column="PQ_IMG1"/>
+		<result property="pq_Img1_ReName" column="PQ_IMG1_RENAME"/>
+		<result property="pq_Img2" column="PQ_IMG2"/>
+		<result property="pq_Img2_ReName" column="PQ_IMG2_RENAME"/>
+		<result property="pq_mNo" column="PQ_MNO"/>
+		<result property="pq_P_No" column="PQ_P_NO"/>
+		<result property="pq_B_No" column="PQ_B_NO"/>
+		<result property="pqr_No" column="PQR_NO"/>
+		<result property="pqr_ParentNo" column="PQR_PARENTNO"/>
+		<result property="pqr_Writer" column="PQR_WRITER"/>
+		<result property="pqr_Id" column="PQR_ID"/>
+		<result property="pqr_Content" column="PQR_CONTENT"/>
+		<result property="pqr_Date" column="PQR_DATE"/>
+		<result property="pqr_Modify_Date" column="PQR_MODIFY_DATE"/>
+		<result property="pqr_Count" column="PQR_COUNT"/>
+		<result property="pqr_Check" column="PQR_CHECK"/>
+		<result property="pqr_Status" column="PQR_STATUS"/>
+		<result property="pqr_Mno" column="PQR_MNO"/>
+		<result property="pqr_bNo" column="PQR_BNO"/>
+		
+	</resultMap>
+	
+	<resultMap type="Orders" id="orderResultSet">
+      <id property="or_NO" column="OR_NO"/>
+      
+      <result property="or_Date" column="OR_DATE"/>
+      <result property="or_Pname" column="OR_PNAME"/>
+      <result property="or_Option1" column="OR_OPTION1"/>
+      <result property="or_Option2" column="OR_OPTION2"/>
+      <result property="or_Amount" column="OR_AMOUNT"/>
+      <result property="or_Address" column="OR_ADDRESS"/>
+      <result property="or_Message" column="OR_MESSAGE"/>
+      <result property="or_Price" column="OR_PRICE"/>
+      <result property="or_Status" column="OR_STATUS"/>
+      <result property="or_Deliver_Num" column="OR_DELIVER_NUM"/>
+      <result property="or_Deliver_Vender" column="OR_DELIVER_VENDER"/>
+      <result property="or_Mno" column="OR_MNO"/>
+      <result property="or_P_NO" column="OR_P_NO"/>
+      <result property="or_Brand_NO" column="OR_BRAND_NO"/>
+      
+   </resultMap>
+   
+   <resultMap type="Review" id="reviewResultSet">
+		<id property="v_NO" column="V_NO"/>
+		
+		<result property="v_Writer" column="V_WRITER"/>
+		<result property="v_Content" column="V_CONTENT"/>
+		<result property="v_Date" column="V_DATE"/>
+		<result property="v_Modify_Date" column="V_MODIFY_DATE"/>
+		<result property="v_Count" column="V_COUNT"/>
+		<result property="v_Score" column="V_SCORE"/>
+		<result property="v_Check" column="V_CHECK"/>
+		<result property="v_Status" column="V_STATUS"/>
+		<result property="v_Img1" column="V_IMG1"/>
+		<result property="v_Img1_ReName" column="V_IMG1_RENAME"/>
+		<result property="v_Img2" column="V_IMG2"/>
+		<result property="v_Img2_ReName" column="V_IMG2_RENAME"/>		
+		<result property="v_Mno" column="V_MNO"/>
+		<result property="v_P_NO" column="V_P_NO"/>
+		<result property="v_B_NO" column="V_B_NO"/>
+	
+
+	</resultMap>
+	
+	<resultMap type="Review_Reply" id="reviewReplyResultSet">
+		<id property="vr_NO" column="VR_NO"/>
+		
+		<result property="vr_Parentno" column="VR_PARENTNO"/>
+		<result property="vr_Writer" column="VR_WRITER"/>
+		<result property="vr_Content" column="VR_CONTENT"/>
+		<result property="vr_Date" column="VR_DATE"/>
+		<result property="vr_Modify_Date" column="VR_MODIFY_DATE"/>
+		<result property="vr_Count" column="VR_COUNT"/>
+		<result property="vr_Check" column="VR_STATUS"/>
+		<result property="vr_Status" column="VR_CHECK"/>
+		<result property="vr_Mno" column="VR_MNO"/>
+		
+
+	</resultMap>
+	
+	<select id="auctionlist" resultMap="auctionResultSet">
+		SELECT * 
+		FROM AUCTION 
+        WHERE  AC_DATE BETWEEN TRUNC(ADD_MONTHS(SYSDATE, -1) + 1) - TO_CHAR(SYSDATE,'DD') AND TRUNC(LAST_DAY(ADD_MONTHS(SYSDATE, -1))) + 0.99999421
+        AND AC_STATUS  = '3'
+        ORDER BY AC_BANNER_NO ASC
+	</select>
+	
+	<select id="ranklist" resultMap="productResultSet">
+	<![CDATA[
+   SELECT P.P_NO,P.P_ORDER_COUNT,PF.PF_IMG1_RENAME,P.P_NAME,TO_CHAR( P.P_LAST_PRICE , '999,999,999,999,999') AS P_LAST_PRICE
+    FROM (SELECT *
+          FROM PRODUCT
+          ORDER BY P_ORDER_COUNT DESC)P
+    JOIN PRODUCT_FILE PF
+    ON P.P_NO =  PF.PF_P_NO
+   WHERE ROWNUM <=20
+   AND P.P_STATUS='1'
+   ]]>
+	</select>
+	
+	<select id="eventlist" resultMap="productResultSet">
+	<![CDATA[
+	SELECT P.P_NO,P.P_NAME,
+            TO_CHAR( P.P_PRICE , '999,999,999,999,999') AS P_PRICE,
+            TO_CHAR( P.P_LAST_PRICE , '999,999,999,999,999') AS P_LAST_PRICE
+             ,PF.PF_IMG1_RENAME
+    FROM (SELECT *
+          FROM PRODUCT
+          ORDER BY LENGTH(P_SAIL_PRICE) DESC,P_SAIL_PRICE DESC)P
+    JOIN PRODUCT_FILE PF
+    ON P.P_NO = PF.PF_P_NO
+    WHERE ROWNUM <=20
+    AND P.P_STATUS='1'
+    ]]>
+	</select>
+	
+	<select id="brandlist" resultMap="brandResultSet">
+	SELECT *
+	FROM BRAND
+	ORDER BY B_NAME ASC
+	
+	</select>
+	
+	<select id="bproductlist" resultMap="brandResultSet">
+	SELECT P.P_NO,P.P_NAME,B.B_NAME,B.B_LOGO_RENAME,P_BCATEGORY,P_SCATEGORY,
+            TO_CHAR( P.P_PRICE , '999,999,999,999,999') AS P_LAST_PRICE,
+            PF.PF_IMG1_RENAME FROM BRAND B
+	JOIN PRODUCT P
+	ON B.BRAND_NO = p.p_brand_no
+	JOIN PRODUCT_FILE PF
+	ON P.P_NO = PF.PF_P_NO
+	WHERE P.P_SHOW_YN ='Y'
+    AND P_STATUS = '1'
+	AND B.B_NAME= #{b_Name}
+	</select>
+	
+	<select id="aproductlist" resultMap="productResultSet">
+	
+	SELECT P.P_NO,P.P_ORDER_COUNT,PF.PF_IMG1_RENAME,P_BCATEGORY,P_SCATEGORY
+		  ,P.P_NAME,TO_CHAR( P.P_LAST_PRICE , '999,999,999,999,999') AS P_LAST_PRICE
+    FROM PRODUCT P
+    JOIN PRODUCT_FILE PF
+    ON P.P_NO =  PF.PF_P_NO
+    WHERE P.P_STATUS='1'
+    ORDER BY P.P_LAST_PRICE
+	
+	</select>
+	
+	<select id="pDetail" resultMap="productDetailResultSet">
+	SELECT P_NO,P_NAME
+			,P_BRAND_NO
+	        ,TO_CHAR( P_PRICE , '999,999,999,999,999') AS P_PRICE
+	        ,TO_CHAR( P_SAIL_PRICE , '999,999,999,999,999') AS P_SAIL_PRICE 
+	        ,TO_CHAR( P_LAST_PRICE , '999,999,999,999,999') AS P_LAST_PRICE
+	        ,P_BCATEGORY
+	        ,P_SCATEGORY
+	        ,P_COMMENT
+	        ,P_ORDER_COUNT
+	        ,P_STATUS
+	        ,P_WRITER
+	        ,OPTION_1
+	        ,OPTION_2
+	        ,PF_IMG1_RENAME
+	        ,PF_IMG2_RENAME
+	        ,PF_IMG3_RENAME
+	        ,PF_IMG4_RENAME
+	        ,PF_IMG5_RENAME
+	        ,PF_IMG6_RENAME
+	        ,PF_DIMG1_RENAME
+	        ,PF_DIMG2_RENAME
+	        ,PF_DIMG3_RENAME
+	        ,B_NAME
+	        ,B_LOGO_RENAME
+	        ,OP_STOCK
+	        FROM PRODUCT P
+	JOIN PRODUCT_OPTION PO
+	ON P.P_NO = PO.OP_P_NO
+	JOIN PRODUCT_FILE PF
+	ON P.P_NO = PF.PF_P_NO
+	JOIN BRAND B
+	ON P.P_BRAND_NO = B.BRAND_NO
+	WHERE P_NO=#{p_NO}
+	</select>
+	
+	<select id="daylist" resultMap="dayproductResutSet">
+   	SELECT P.P_NO,P.P_ORDER_COUNT,PF.PF_IMG1_RENAME,P_BCATEGORY,P_SCATEGORY
+  	,P.P_NAME,TO_CHAR( P.P_LAST_PRICE , '999,999,999,999,999') AS P_LAST_PRICE
+        ,ORD.OR_P_NO, TO_CHAR(ORD.OR_DATE, 'yyyy-mm-dd') AS DAY,COUNT(*) count
+    FROM PRODUCT P
+    JOIN PRODUCT_FILE PF
+    ON P.P_NO =  PF.PF_P_NO
+    JOIN ORDERS ORD
+    ON ORD.OR_P_NO = P.P_NO 
+    WHERE P.P_STATUS='1'
+    GROUP BY 
+    TO_CHAR(ORD.OR_DATE, 'yyyy-mm-dd'),
+    ORD.OR_P_NO, P.P_NO,P.P_ORDER_COUNT,PF.PF_IMG1_RENAME,P_BCATEGORY,P_SCATEGORY
+	 ,P.P_NAME,TO_CHAR( P.P_LAST_PRICE , '999,999,999,999,999')
+    ORDER BY DAY ASC,COUNT DESC
+	</select>
+	
+	<select id="monthlist" resultMap="dayproductResutSet">
+   	SELECT P.P_NO,P.P_ORDER_COUNT,PF.PF_IMG1_RENAME,P_BCATEGORY,P_SCATEGORY
+  	,P.P_NAME,TO_CHAR( P.P_LAST_PRICE , '999,999,999,999,999') AS P_LAST_PRICE
+        ,ORD.OR_P_NO, TO_CHAR(ORD.OR_DATE, 'yyyy-mm') AS DAY,COUNT(*) count
+    FROM PRODUCT P
+    JOIN PRODUCT_FILE PF
+    ON P.P_NO =  PF.PF_P_NO
+    JOIN ORDERS ORD
+    ON ORD.OR_P_NO = P.P_NO 
+    WHERE P.P_STATUS='1'
+    GROUP BY 
+    TO_CHAR(ORD.OR_DATE, 'yyyy-mm'),
+    ORD.OR_P_NO, P.P_NO,P.P_ORDER_COUNT,PF.PF_IMG1_RENAME,P_BCATEGORY,P_SCATEGORY
+	 ,P.P_NAME,TO_CHAR( P.P_LAST_PRICE , '999,999,999,999,999')
+    ORDER BY DAY ASC,COUNT DESC
+	</select>
+	
+	<select id="yearlist" resultMap="dayproductResutSet">
+   	SELECT P.P_NO,P.P_ORDER_COUNT,PF.PF_IMG1_RENAME,P_BCATEGORY,P_SCATEGORY
+  	,P.P_NAME,TO_CHAR( P.P_LAST_PRICE , '999,999,999,999,999') AS P_LAST_PRICE
+        ,ORD.OR_P_NO, TO_CHAR(ORD.OR_DATE, 'yyyy') AS DAY,COUNT(*) count
+    FROM PRODUCT P
+    JOIN PRODUCT_FILE PF
+    ON P.P_NO =  PF.PF_P_NO
+    JOIN ORDERS ORD
+    ON ORD.OR_P_NO = P.P_NO 
+    WHERE P.P_STATUS='1'
+    GROUP BY 
+    TO_CHAR(ORD.OR_DATE, 'yyyy'),
+    ORD.OR_P_NO, P.P_NO,P.P_ORDER_COUNT,PF.PF_IMG1_RENAME,P_BCATEGORY,P_SCATEGORY
+	 ,P.P_NAME,TO_CHAR( P.P_LAST_PRICE , '999,999,999,999,999')
+    ORDER BY DAY ASC,COUNT DESC
+	</select>
+	
+	<select id="optionlist" resultMap="productDetailResultSet">
+	select * from product_option
+	where op_p_NO=#{p_NO}
+	and option_1=#{option_1}
+	
+	</select>
+	
+	<insert id="qnacommant" parameterType="QNAProduct" >
+	INSERT INTO QNAPRODUCT 
+	VALUES(SEQ_PQ_NO.NEXTVAL,#{pq_Writer},#{pq_Id},#{pq_Content}
+			,SYSDATE,SYSDATE,DEFAULT,DEFAULT,DEFAULT,#{pq_Img1},#{pq_Img1_ReName}
+			,#{pq_Img2},#{pq_Img2_ReName},#{pq_mNo},#{pq_P_No},#{pq_B_No})
+	</insert>
+	
+	
+	<select id="selectQnaCommant" resultMap="QnAResultSet">
+	 select * from QNAPRODUCT
+	where pq_P_no = #{pq_P_No}
+	and pq_status='Y'
+	ORDER BY PQ_NO
+	</select>
+	
+	<select id="selectQnaReCommant" resultMap="QnAResultSet">
+	select * from qnaProduct_reply
+	where pqr_status = 'Y'
+	ORDER BY PQR_NO
+
+	</select>
+	
+	<update id="deleteqna">
+		
+	UPDATE QNAPRODUCT
+	SET PQ_STATUS = 'N'
+	WHERE PQ_NO = #{pq_No}
+	
+	</update>
+	
+	<select id="selectOption" resultMap="productDetailResultSet">
+	
+	select distinct option_1 from product_option
+	where op_p_NO = #{p_NO}
+	
+	</select>
+	
+	<select id="selectorder" resultMap="orderResultSet">
+	select * from orders
+	where or_p_no = #{or_P_NO}
+	AND or_MNO = #{or_Mno}
+	</select>
+	
+	<insert id="insertReview" parameterType="Review">
+	INSERT INTO REVIEW
+	VALUES(SEQ_V_NO.NEXTVAL,#{v_Writer},#{v_Content},SYSDATE,SYSDATE,DEFAULT,#{v_Score}
+			,DEFAULT,DEFAULT,#{v_Img1},#{v_Img1_ReName},#{v_Img2},#{v_Img2_ReName},#{v_Mno}
+			,#{v_P_NO},#{v_B_NO})
+	
+	</insert>
+	
+	<select id="selectReview" resultMap="reviewResultSet">
+	select * from REVIEW
+	where V_P_NO = #{v_P_NO}
+	and V_status='Y'
+	ORDER BY V_NO
+	
+	</select>
+	
+	<select id="selectReviewRe" resultMap="reviewReplyResultSet">
+	SELECT * FROM REVIEW_REPLY
+	WHERE VR_STATUS = 'Y'
+	ORDER BY VR_NO
+	
+	</select>
+	
+	<update id="deletereview">
+	UPDATE REVIEW
+	SET V_STATUS = 'N'
+	WHERE V_NO = #{V_NO}
+	
+	</update>
+	
+	
+	<select id="selectAvgReview" resultMap="reviewResultSet">
+	SELECT ROUND(AVG(V_SCORE),2) AS V_SCORE FROM REVIEW
+	WHERE v_P_NO = #{v_P_NO}
+	ANd V_STATUS = 'Y'
+	</select>
+</mapper>

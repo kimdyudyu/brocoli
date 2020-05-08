@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminOrders">
+	<resultMap id="ordersResultSet" type="Orders">
+		<id property="or_NO" column="OR_NO"/>
+		<result property="or_Date" column="OR_DATE"/>
+		<result property="or_Pname" column="OR_PNAME"/>
+		<result property="or_Option1" column="OR_OPTION1"/>
+		<result property="or_Option2" column="OR_OPTION2"/>
+		<result property="or_Amount" column="OR_AMOUNT"/>
+		<result property="or_Address" column="OR_ADDRESS"/>
+		<result property="or_Message" column="OR_MESSAGE"/>
+		<result property="or_Price" column="OR_PRICE"/>
+		<result property="or_Status" column="OR_STATUS"/>
+		<result property="or_Deliver_Num" column="OR_DELIVER_NUM"/>
+		<result property="or_Deliver_Vender" column="OR_DELIVER_VENDER"/>
+		<result property="or_Mno" column="OR_MNO"/>
+		<result property="or_Recip_Name" column="OR_RECIP_NAME"/>
+		<result property="or_Phone" column="OR_PHONE"/>
+		<result property="or_P_NO" column="OR_P_NO"/>
+		<result property="or_Brand_NO" column="OR_BRAND_NO"/>
+		
+		<collection property="or_Member" resultMap="memberResultSet"/>
+		<collection property="pList" resultMap="productResultSet"/>
+	</resultMap>
+	
+	<resultMap id="memberResultSet" type="Member">
+		<id property="mNO" column="MNO"/>
+		<result property="mId" column="MID"/>
+		<result property="pwd" column="PWD"/>
+		<result property="mName" column="MNAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="gender" column="GENDER"/>
+		<result property="birthDay" column="BIRTHDAY"/>
+		<result property="mGrant" column="MGRANT"/>
+		<result property="mPoint" column="MPOINT"/>
+		<result property="order_Count" column="ORDER_COUNT"/>
+		<result property="order_Price" column="ORDER_PRICE"/>
+		<result property="report_YN" column="REPORT_YN"/>
+		<result property="block_YN" column="BLOCK_YN"/>
+		<result property="block_Content" column="BLOCK_CONTENT"/>
+		<result property="del_Flag_YN" column="DEL_FLAG_YN"/>
+		<result property="del_Date" column="DEL_DATE"/>
+		<result property="enrollDate" column="ENROLLDATE"/>
+		<result property="brand" column="BRAND"/>
+		<result property="brand_NO" column="BRAND_NO"/>
+	</resultMap>
+	
+	<resultMap id="changeResultSet" type="Change">
+		<id property="ch_No" column="CH_NO"/>
+		<result property="ch_Pname" column="CH_PNAME"/>
+		<result property="ch_Price" column="CH_PRICE"/>
+		<result property="ch_Reason" column="CH_REASON"/>
+		<result property="ch_Comment" column="CH_COMMENT"/>
+		<result property="ch_Date" column="CH_DATE"/>
+		<result property="ch_EnDate" column="CH_ENDDATE"/>
+		<result property="ch_Status" column="CH_STATUS"/>
+		<result property="ch_Or_NO" column="CH_OR_NO"/>
+		<result property="ch_Mno" column="CH_MNO"/>
+		
+		<collection property="ch_ordersMember" resultMap="ordersResultSet"/>
+	</resultMap>
+	
+	<resultMap id="RejectResultSet" type="Reject">
+		<id property="re_No" column="RE_NO"/>
+		<result property="re_Pname" column="RE_PNAME"/>
+		<result property="re_Price" column="RE_PRICE"/>
+		<result property="re_Reason" column="RE_REASON"/>
+		<result property="re_Comment" column="RE_COMMENT"/>
+		<result property="re_Date" column="RE_DATE"/>
+		<result property="re_Enddate" column="RE_ENDDATE"/>
+		<result property="re_Status" column="RE_STATUS"/>
+		<result property="re_MN_OR_NO" column="RE_MN_OR_NO"/>
+		<result property="re_Mno" column="RE_MNO"/>
+		
+		<collection property="re_ordersMember" resultMap="ordersResultSet"/>
+	</resultMap>
+	
+	<resultMap  type="Product" id="productResultSet">
+		<id property="p_NO" column="P_NO"/>
+		<result property="p_Name" column="P_NAME"/>
+		<result property="p_Price" column="P_PRICE"/>
+		<result property="p_Sail_Price" column="P_SAIL_PRICE"/>
+		<result property="p_Last_Price" column="P_LAST_PRICE"/>
+		<result property="p_Bcategory" column="P_BCATEGORY"/>
+		<result property="p_Scategory" column="P_SCATEGORY"/>
+		<result property="p_Comment" column="P_COMMENT"/>
+		<result property="p_Order_Count" column="P_ORDER_COUNT"/>
+		<result property="p_Status" column="P_STATUS"/>
+		<result property="p_Writer" column="P_WRITER"/>
+		<result property="p_Insert_Date" column="P_INSERT_DATE"/>
+		<result property="p_Modify_Id" column="P_MODIFY_ID"/>
+		<result property="p_Modify_Date" column="P_MODIFY_DATE"/>
+		<result property="p_Show_YN" column="P_SHOW_YN"/>
+		<result property="p_Brand_NO" column="P_BRAND_NO"/>
+		
+		<collection property="poList" resultMap="productOptionResultSet"/>
+	</resultMap>
+	
+	<resultMap id="productOptionResultSet" type="Product_Option">
+		<id property="op_NO" column="OP_NO"/>
+		<result property="option_1" column="OPTION_1"/>
+		<result property="option_2" column="OPTION_2"/>
+		<result property="op_Stock" column="OP_STOCK"/>
+		<result property="op_Rec_Date" column="OP_REC_DATE"/>
+		<result property="op_Status_YN" column="OP_STATUS_YN"/>
+		<result property="op_P_NO" column="OP_P_NO"/>
+	</resultMap>
+	
+
+	<select id="selectOrdersList" resultMap="ordersResultSet" parameterType="Orders">
+		SELECT *
+		FROM ORDERS O
+     	JOIN MEMBER M ON OR_MNO = MNO 
+     	ORDER BY OR_NO DESC
+	</select>
+	
+	<update id="orderStatusChange" parameterType="Orders">
+		UPDATE Orders
+		SET OR_STATUS=#{or_Status}
+		WHERE OR_NO=#{or_NO}
+	</update>
+
+	<select id="selectChangeList" resultMap="changeResultSet" parameterType="Change">
+		SELECT *
+		FROM CHANGE C
+     	JOIN ORDERS O ON CH_OR_NO = OR_NO
+    	JOIN MEMBER M ON CH_MNO = MNO
+    	JOIN PRODUCT P ON OR_P_NO = P_NO 
+	</select>
+	
+	<select id="selectRejectList" resultMap="RejectResultSet" parameterType="Reject">
+		SELECT *
+		FROM REJECT R
+		JOIN ORDERS O ON RE_MN_OR_NO = OR_NO
+    	JOIN MEMBER M ON RE_MNO = MNO
+    	JOIN PRODUCT P ON OR_P_NO = P_NO 
+    	JOIN PRODUCT_OPTION OP ON P_NO = OP_P_NO 
+	</select>
+	
+	<select id="orderChangeModal" resultMap="productOptionResultSet" parameterType="Product_Option">
+		SELECT *
+		FROM PRODUCT_OPTION
+		WHERE OP_P_NO = #{chPNO}
+	</select>
+	
+	<update id="changeOption" parameterType="Change">
+		UPDATE CHANGE
+		SET CH_STATUS=#{modalChangeSelect}
+		WHERE CH_NO=#{chNO}
+	</update>
+	
+	<update id="changeOption2" parameterType="Orders">
+		UPDATE ORDERS
+		SET OR_OPTION1=#{or_Option1Select} , OR_OPTION2=#{or_Option2Select} , OR_STATUS='7'
+		WHERE OR_NO=#{chORNO}
+	</update>
+	
+	<update id="rejectAmount" parameterType="Product_Option">
+		UPDATE PRODUCT_OPTION
+		SET OP_STOCK = OP_STOCK+1
+		WHERE OP_NO=#{re_Op_NO}
+	</update>
+	
+	<update id="rejectStatus" parameterType="Reject">
+		UPDATE REJECT
+		SET RE_STATUS = '3'
+		WHERE RE_NO=#{reNO}
+	</update>
+	
+	<update id="rejectOrderStatus" parameterType="Orders">
+		UPDATE ORDERS
+		SET OR_STATUS = '6'
+		WHERE OR_NO=#{reORNO}
+	</update>
+	
+	
+</mapper>

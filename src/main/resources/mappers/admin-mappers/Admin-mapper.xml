@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Admin">
+
+	<resultMap id="memberResultSet" type="Member">
+		<id property="mNO" column="MNO"/>
+		<result property="mId" column="MID"/>
+		<result property="pwd" column="PWD"/>
+		<result property="mName" column="MNAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="gender" column="GENDER"/>
+		<result property="birthDay" column="BIRTHDAY"/>
+		<result property="mGrant" column="MGRANT"/>
+		<result property="mPoint" column="MPOINT"/>
+		<result property="order_Count" column="ORDER_COUNT"/>
+		<result property="order_Price" column="ORDER_PRICE"/>
+		<result property="report_YN" column="REPORT_YN"/>
+		<result property="block_YN" column="BLOCK_YN"/>
+		<result property="block_Content" column="BLOCK_CONTENT"/>
+		<result property="del_Flag_YN" column="DEL_FLAG_YN"/>
+		<result property="del_Date" column="DEL_DATE"/>
+		<result property="enrollDate" column="ENROLLDATE"/>
+		<result property="brand" column="BRAND"/>
+		<result property="brand_NO" column="BRAND_NO"/>
+	</resultMap>
+	
+	<resultMap id="brandResultSet" type="Brand">
+		<id property="brand_NO" column="BRAND_NO"/>
+		<result property="b_Name" column="B_NAME"/>
+		<result property="b_Logo" column="B_LOGO"/>
+		<result property="b_Logo_ReName" column="B_LOGO_RENAME"/>
+		<result property="b_Business_NO" column="B_BUSINESS_NO"/>
+		<result property="b_Status" column="B_STATUS"/>
+		<result property="b_Enter_Date" column="B_ENTER_DATE"/>
+		<result property="b_Close_Date" column="B_CLOSE_DATE"/>
+		<result property="b_Close_Content" column="B_CLOSE_CONTENT"/>
+		<result property="b_Modify_ID" column="B_MODIFY_ID"/>
+		<result property="b_Modify_Date" column="B_MODIFY_DATE"/>
+		<result property="b_Owner1_ID" column="B_OWNER1_ID"/>
+		<result property="b_Owner2_ID" column="B_OWNER2_ID"/>
+		<result property="b_Owner3_ID" column="B_OWNER3_ID"/>
+		<result property="b_Phone" column="B_PHONE"/>
+		<result property="b_Address" column="B_ADDRESS"/>
+		<result property="b_Owner_Name" column="B_OWNER_NAME"/>
+		<result property="b_Comment" column="B_COMMENT"/>
+		<result property="b_Email1" column="B_EMAIL1"/>
+		<result property="b_Email2" column="B_EMAIL2"/>
+		<result property="b_Email3" column="B_EMAIL3"/>
+	</resultMap>
+	
+	<resultMap id="ordersResultSet" type="Orders">
+		<id property="or_NO" column="OR_NO"/>
+		<result property="or_Date" column="OR_DATE"/>
+		<result property="or_Pname" column="OR_PNAME"/>
+		<result property="or_Option1" column="OR_OPTION1"/>
+		<result property="or_Option2" column="OR_OPTION2"/>
+		<result property="or_Amount" column="OR_AMOUNT"/>
+		<result property="or_Address" column="OR_ADDRESS"/>
+		<result property="or_Message" column="OR_MESSAGE"/>
+		<result property="or_Price" column="OR_PRICE"/>
+		<result property="or_Status" column="OR_STATUS"/>
+		<result property="or_Deliver_Num" column="OR_DELIVER_NUM"/>
+		<result property="or_Deliver_Vender" column="OR_DELIVER_VENDER"/>
+		<result property="or_Mno" column="OR_MNO"/>
+		<result property="or_Recip_Name" column="OR_RECIP_NAME"/>
+		<result property="or_Phone" column="OR_PHONE"/>
+		<result property="or_P_NO" column="OR_P_NO"/>
+		<result property="or_Brand_NO" column="OR_BRAND_NO"/>
+		
+		<collection property="or_Member" resultMap="memberResultSet"/>
+		<collection property="pList" resultMap="productResultSet"/>
+	</resultMap>
+
+	<select id="memberCount" parameterType="Member" resultType="_int">
+	 	SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MGRANT = '2' OR MGRANT = '3'	
+	</select>
+	
+	<select id="brandCount" parameterType="Brand" resultType="_int">
+	 	SELECT COUNT(*)
+		FROM BRAND
+	</select>
+	
+	<select id="orderCount" parameterType="Orders" resultType="_int">
+	 	SELECT COUNT(*)
+		FROM ORDERS
+	</select>
+	
+	<select id="sales" parameterType="Orders" resultType="string">
+		SELECT  TO_CHAR(SUM(OR_PRICE), '999,999,999,999,999')
+		FROM ORDERS
+	</select>
+	
+	<select id="brandList" parameterType="Brand" resultMap="brandResultSet">
+		SELECT * 
+		FROM BRAND
+		WHERE  <![CDATA[ ROWNUM <= 5 ]]>
+		ORDER BY BRAND_NO DESC
+	</select>
+	
+	<select id="memberWCount" parameterType="Member" resultType="_int">
+	 	SELECT COUNT(*)
+		FROM MEMBER
+		WHERE GENDER = 'F'
+	</select>
+	
+	<select id="memberMCount" parameterType="Member" resultType="_int">
+	 	SELECT COUNT(*)
+		FROM MEMBER
+		WHERE GENDER = 'M'
+	</select>
+</mapper>

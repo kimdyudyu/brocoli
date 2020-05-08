@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ <configuration>
+ 	<settings>
+ 		<setting name="jdbcTypeForNull" value="NULL"/>
+ 	</settings>
+ 	
+ 	<!-- 타입 알리아스,메퍼 정보는 실제로 존재하는 파일이 없으면 최초 구동시 에러가 발생하므로 미리 만들어 놓지 말자. -->
+ 	
+ 	
+ 	<!-- typeAliases -->
+ 	<typeAliases>
+ 		<!-- 멤버 -->
+        <typeAlias type="com.kh.brocoli.member.model.vo.Member" alias="Member"/>
+        <typeAlias type="com.kh.brocoli.member.model.vo.Cart" alias="Cart"/>
+        <typeAlias type="com.kh.brocoli.member.model.vo.Change" alias="Change"/>
+        <typeAlias type="com.kh.brocoli.member.model.vo.Orders" alias="Orders"/>
+        <typeAlias type="com.kh.brocoli.member.model.vo.trackOrders" alias="trackOrders"/>
+        <typeAlias type="com.kh.brocoli.member.model.vo.Reject" alias="Reject"/>
+        <typeAlias type="com.kh.brocoli.member.model.vo.Wish" alias="Wish"/>
+        <typeAlias type="com.kh.brocoli.member.model.vo.OrderAdd" alias="OrderAdd"/>
+        <!--  상품   -->
+        <typeAlias type="com.kh.brocoli.product.model.vo.Brand" alias="Brand"/>
+        <typeAlias type="com.kh.brocoli.product.model.vo.ProductDetail" alias="ProductDetail"/>
+        <typeAlias type="com.kh.brocoli.product.model.vo.Product_File" alias="Product_File"/>
+        <typeAlias type="com.kh.brocoli.product.model.vo.Product_Option" alias="Product_Option"/>
+        <typeAlias type="com.kh.brocoli.product.model.vo.Product" alias="Product"/>
+        <typeAlias type="com.kh.brocoli.product.model.vo.totalProduct" alias="totalProduct"/>
+        <typeAlias type="com.kh.brocoli.product.model.vo.QNAProduct_Reply" alias="QNAProduct_Reply"/>
+        <typeAlias type="com.kh.brocoli.product.model.vo.QNAProduct" alias="QNAProduct"/>
+        <typeAlias type="com.kh.brocoli.product.model.vo.Review_Reply" alias="Review_Reply"/>
+        <typeAlias type="com.kh.brocoli.product.model.vo.Review" alias="Review"/>
+        <typeAlias type="com.kh.brocoli.product.model.vo.Statistics" alias="Statistics"/>
+         <typeAlias type="com.kh.brocoli.product.model.vo.Entering_Question" alias="Entering_Question"/>
+		<!-- 매거진 -->
+		<typeAlias type="com.kh.brocoli.magazine.model.vo.Magazine_File" alias="Magazine_File"/>
+		<typeAlias type="com.kh.brocoli.magazine.model.vo.Magazine" alias="Magazine"/>
+		<typeAlias type="com.kh.brocoli.magazine.model.vo.Magazine2" alias="Magazine2"/>
+		<!-- 관리자 / 오너 -->
+		<typeAlias type="com.kh.brocoli.general.model.vo.Auction" alias="Auction"/>
+		<typeAlias type="com.kh.brocoli.general.model.vo.Contact" alias="Contact"/>
+		<typeAlias type="com.kh.brocoli.general.model.vo.Setting" alias="Setting"/>
+		<!-- 게시판 -->
+		<typeAlias type="com.kh.brocoli.board.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="com.kh.brocoli.board.model.vo.QnA_Reply" alias="QnA_Reply"/>
+		<typeAlias type="com.kh.brocoli.board.model.vo.QnA" alias="QnA"/>
+		<typeAlias type="com.kh.brocoli.product.model.vo.QnAComment" alias="QnAComment"/>
+ 	</typeAliases>
+ 	
+ 	
+ 	<!-- DB정보 
+ 		environments 엘리먼트로 dataSource 등등의 정보
+ 		
+ 		*but! 스프링 에서는 그 정보를 이 파일에서 작성하지 않는다!!
+ 		기존의 DB연결 설정에 대한 정보를 mybatis-config.xml에서 작성한 정보를
+ 		=>
+ 	-->
+ 	<mappers>
+		<mapper resource="mappers/main-mappers/member-mapper.xml"/>
+ 		<mapper resource="mappers/main-mappers/boardNotice-mapper.xml"/>
+ 		<mapper resource="mappers/main-mappers/QnA-mapper.xml"/>
+		<mapper resource="mappers/admin-mappers/AdminMember-mapper.xml"/>
+		<mapper resource="mappers/main-mappers/main-mapper.xml"/>
+ 		<mapper resource="mappers/owner-mappers/ownerProduct-mapper.xml"/>
+ 		<mapper resource="mappers/owner-mappers/ownerOrder-mapper.xml"/>
+  		<mapper resource="mappers/owner-mappers/ownerReView-mapper.xml"/>
+   		<mapper resource="mappers/owner-mappers/ownerQnA-mapper.xml"/>
+   		<mapper resource="mappers/owner-mappers/ownerAuction-mapper.xml"/>
+   		<mapper resource="mappers/owner-mappers/ownerMagazine-mapper.xml"/>
+   		<mapper resource="mappers/owner-mappers/ownerContact-mapper.xml"/>
+   		<mapper resource="mappers/owner-mappers/ownerBasic-mapper.xml"/>
+ 		<mapper resource="mappers/admin-mappers/AdminBrand-mapper.xml"/>
+ 		<mapper resource="mappers/admin-mappers/AdminOrders-mapper.xml"/>
+ 		<mapper resource="mappers/admin-mappers/AdminProduct-mapper.xml"/>
+ 		<mapper resource="mappers/admin-mappers/AdminSales-mapper.xml"/>
+ 		<mapper resource="mappers/main-mappers/Wish-mapper.xml"/>
+ 		<mapper resource="mappers/main-mappers/Cart-mapper.xml"/>
+ 		<mapper resource="mappers/admin-mappers/AdminMagazine-mapper.xml"/>
+ 		<mapper resource="mappers/main-mappers/mypage-mapper.xml"/>
+ 		<mapper resource="mappers/admin-mappers/AdminAuction-mapper.xml"/>
+ 		<mapper resource="mappers/admin-mappers/Admin-mapper.xml"/>
+ 		
+<!--  		<mapper resource="mappers/board-mapper.xml"/> -->
+ 	</mappers>
+ 	<!--  -->
+ 	
+ </configuration>

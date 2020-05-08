@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ownerBasic-mapper">
+
+		<!-- 브랜드 정보 -->
+	<resultMap id="brandResultSet" type="Brand">
+		<id property="brand_NO" column="BRAND_NO"/>
+		
+		<result property="b_Name" column="B_NAME"/>
+		<result property="b_Logo" column="B_LOGO"/>
+		<result property="b_Logo_ReName" column="B_LOGO_RENAME"/>
+		<result property="b_Business_NO" column="B_BUSINESS_NO"/>
+		<result property="b_Status" column="B_STATUS"/>
+		<result property="b_Enter_Date" column="B_ENTER_DATE"/>
+		<result property="b_Close_Date" column="B_CLOSE_DATE"/>
+		<result property="b_Close_Content" column="B_CLOSE_CONTENT"/>
+		<result property="b_Modify_ID" column="B_MODIFY_ID"/>
+		<result property="b_Modify_Date" column="B_MODIFY_DATE"/>
+		<result property="b_Owner1_ID" column="B_OWNER1_ID"/>
+		<result property="b_Owner2_ID" column="B_OWNER2_ID"/>
+		<result property="b_Owner3_ID" column="B_OWNER3_ID"/>
+		<result property="b_Phone" column="B_PHONE"/>
+		<result property="b_Address" column="B_ADDRESS"/>
+		<result property="b_Owner_Name" column="B_OWNER_NAME"/>
+		<result property="b_Comment" column="B_COMMENT"/>
+		<result property="b_Email1" column="B_EMAIL1"/>
+		<result property="b_Email2" column="B_EMAIL2"/>
+		<result property="b_Email3" column="B_EMAIL3"/>
+		
+	</resultMap>
+	
+	<resultMap type="Orders" id="orderResultSet">
+		<id property="or_NO" column="OR_NO"/>
+		
+		<result property="or_Date" column="OR_DATE"/>
+		<result property="or_Pname" column="OR_PNAME"/>
+		<result property="or_Option1" column="OR_OPTION1"/>
+		<result property="or_Option2" column="OR_OPTION2"/>
+		<result property="or_Amount" column="OR_AMOUNT"/>
+		<result property="or_Address" column="OR_ADDRESS"/>
+		<result property="or_Message" column="OR_MESSAGE"/>
+		<result property="or_Price" column="OR_PRICE"/>
+		<result property="or_Status" column="OR_STATUS"/>
+		<result property="or_Deliver_Num" column="OR_DELIVER_NUM"/>
+		<result property="or_Deliver_Vender" column="OR_DELIVER_VENDER"/>
+		<result property="or_Mno" column="OR_MNO"/>
+		<result property="or_Recip_Name" column="OR_RECIP_NAME"/>
+		<result property="or_Phone" column="OR_PHONE"/>
+		<result property="or_P_NO" column="OR_P_NO"/>
+		<result property="or_Brand_NO" column="OR_BRAND_NO"/>
+		
+		<collection property="pList" resultMap="productResultSet"/>
+		
+	</resultMap>
+	
+	<resultMap  type="Product" id="productResultSet">
+		<id property="p_NO" column="P_NO"/>
+		
+		<result property="p_Name" column="P_NAME"/>
+		<result property="p_Price" column="P_PRICE"/>
+		<result property="p_Sail_Price" column="P_SAIL_PRICE"/>
+		<result property="p_Last_Price" column="P_LAST_PRICE"/>
+		<result property="p_Bcategory" column="P_BCATEGORY"/>
+		<result property="p_Scategory" column="P_SCATEGORY"/>
+		<result property="p_Comment" column="P_COMMENT"/>
+		<result property="p_Order_Count" column="P_ORDER_COUNT"/>
+		<result property="p_Status" column="P_STATUS"/>
+		<result property="p_Writer" column="P_WRITER"/>
+		<result property="p_Insert_Date" column="P_INSERT_DATE"/>
+		<result property="p_Modify_Id" column="P_MODIFY_ID"/>
+		<result property="p_Modify_Date" column="P_MODIFY_DATE"/>
+		<result property="p_Show_YN" column="P_SHOW_YN"/>
+		<result property="p_Brand_NO" column="P_BRAND_NO"/>
+		
+		<collection property="pfList" resultMap="ProductFileResultSet"/>
+	</resultMap>
+
+<!-- 상품 이미지 등록정보 -->
+	<resultMap  type="Product_File" id="ProductFileResultSet">
+		<id property="pf_NO" column="PF_NO"/>
+		
+		<result property="pf_Img1" column="PF_IMG1"/>
+		<result property="pf_Img1_ReName" column="PF_IMG1_RENAME"/>
+		<result property="pf_Img2" column="PF_IMG2"/>
+		<result property="pf_Img2_ReName" column="PF_IMG2_RENAME"/>
+		<result property="pf_Img3" column="PF_IMG3"/>
+		<result property="pf_Img3_ReName" column="PF_IMG3_RENAME"/>
+		<result property="pf_Img4" column="PF_IMG4"/>		
+		<result property="pf_Img4_ReName" column="PF_IMG4_RENAME"/>
+		<result property="pf_Img5" column="PF_IMG5"/>
+		<result property="pf_Img5_ReName" column="PF_IMG5_RENAME"/>
+		<result property="pf_Img6" column="PF_IMG6"/>
+		<result property="pf_Img6_ReName" column="PF_IMG6_RENAME"/>
+		<result property="pf_Dimg1" column="PF_DIMG1"/>
+		<result property="pf_Dimg1_ReName" column="PF_DIMG1_RENAME"/>
+		<result property="pf_Dimg2" column="PF_DIMG2"/>			
+		<result property="pf_Dimg2_ReName" column="PF_DIMG2_RENAME"/>
+		<result property="pf_Dimg3" column="PF_DIMG3"/>	
+		<result property="pf_Dimg3_ReName" column="PF_DIMG3_RENAME"/>
+		<result property="pf_P_NO" column="PF_P_NO"/>	
+		
+	</resultMap>
+	
+	<select id="selectMassegeCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM CONTACT
+		WHERE CON_VIEW_CHECK = 'N'
+		AND CON_BNO = #{bNO}
+	</select>
+	
+	<select id="selectReviewCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM REVIEW
+		WHERE V_CHECK = 'N'
+		AND V_B_NO = #{bNO}
+	</select>
+	
+	<select id="selectOrderCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM ORDERS
+		WHERE OR_STATUS = '1'
+		AND OR_BRAND_NO = #{bNO}
+	</select>
+	
+	<select id="selectQnACount" resultType="_int">
+		SELECT COUNT(*)
+		FROM QNAPRODUCT
+		WHERE PQ_CHECK = 'N'
+		AND PQ_B_NO = #{bNO}
+	</select>
+	
+	<select id="selectBrandLogo" resultType="String">
+		SELECT B_LOGO_RENAME
+		FROM BRAND
+		WHERE BRAND_NO = #{bNO}
+	</select>
+	
+	<select id="selectBrandInfo" resultMap="brandResultSet">
+		SELECT *
+		FROM BRAND
+		WHERE BRAND_NO = #{bNO}
+	</select>
+	
+	<select id="selectTotalPrice" resultType="_int">
+		SELECT NVL(SUM(OR_PRICE),0)
+		FROM ORDERS
+		WHERE OR_BRAND_NO = #{bNO}
+		AND TO_CHAR(OR_DATE,'YYYYMM') = TO_CHAR(SYSDATE, 'YYYYMM')
+	</select>
+	
+	<select id="selectResultPrice" resultType="_int">
+		SELECT NVL(SUM(OR_PRICE),0)
+		FROM ORDERS
+		WHERE OR_BRAND_NO = #{bNO}
+		AND TO_CHAR(OR_DATE,'YYYYMM') = TO_CHAR(SYSDATE, 'YYYYMM')-1
+	</select>
+	
+	<select id="selectCountOrder" resultType="_int">
+		SELECT NVL(COUNT(*),0)
+		FROM ORDERS
+		WHERE OR_BRAND_NO = #{bNO}
+		AND TO_CHAR(OR_DATE,'YYYYMM') = TO_CHAR(SYSDATE,'YYYYMM')
+	</select>
+	
+	<select id="selectCountReject" resultType="_int">
+		SELECT NVL(COUNT(*),0)
+		FROM REJECT R
+        JOIN ORDERS O
+        ON R.RE_MN_OR_NO = O.OR_NO
+		WHERE OR_BRAND_NO = #{bNO}
+		AND TO_CHAR(OR_DATE,'YYYYMM') = TO_CHAR(SYSDATE,'YYYYMM')
+	</select>
+	
+	<select id="selectCountChange" resultType="_int">
+		SELECT NVL(COUNT(*),0)
+		FROM CHANGE C
+        JOIN ORDERS O
+        ON C.CH_OR_NO = O.OR_NO
+		WHERE OR_BRAND_NO = #{bNO}
+		AND TO_CHAR(OR_DATE,'YYYYMM') = TO_CHAR(SYSDATE,'YYYYMM')
+	</select>
+	
+	<select id="ownerResultProduct" resultMap="productResultSet">
+	<![CDATA[
+        SELECT *
+		FROM PRODUCT P
+		JOIN PRODUCT_FILE PF
+		ON P.P_NO = PF.PF_P_NO
+		WHERE P_BRAND_NO = #{bNO}
+		AND ROWNUM < 6
+		ORDER BY P.P_ORDER_COUNT DESC
+		]]>
+	</select>
+	
+	
+	
+	
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,38 @@
+@charset "UTF-8";
+li > button > img{
+height : 125px;
+width : 125px;
+border-radius: 70%;
+overflow: hidden;
+}
+li > button{
+margin-left : 53px;
+}
+
+.brandSR ol{
+    position: relative;
+    border-width: 1px 1px 0 1px;
+    
+    
+}
+li p{
+font-size: 25px;
+}
+.brandSR ol li {
+float: left;
+    width: 20%;
+    border-width: 0 1px 1px 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+   
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.brlist{
+    
+    margin-bottom: 97px;
+}
+.brandSR ol li:hover{
+background: #BDBDBD;}

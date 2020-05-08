@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+	
+	<!-- 	참고용 MAPPER파일입니다. 본인이 사용할 파일은 반드시 새로 생성해서 사용해주세요. -->
+	
+	<!-- resultMap -->
+	<resultMap id="boardResultSet" type="Board">
+		<id property="bId" column="BID"/>
+		
+		<result property="bTitle" column="BTITLE"/>
+		<result property="bWriter" column="BWRITER"/>
+		<result property="bContent" column="BCONTENT"/>
+		<result property="originalFileName" column="ORIGINAL_FILENAME"/>
+		<result property="renameFileName" column="RENAME_FILENAME"/>
+		<result property="bCount" column="BCOUNT"/>
+		<result property="bCreateDate" column="B_CREATE_DATE"/>
+		<result property="bModifyDate" column="B_MODIFY_DATE"/>
+		<result property="bStatus" column="B_STATUS"/>
+	</resultMap>
+	
+	
+	<resultMap id="replyResultSet" type="Reply">
+		<id property="rId" column="RID"/>
+		
+		<result property="rContent" column="RCONTENT"/>
+		<result property="refBid" column="REF_BID"/>
+		<result property="rWriter" column="RWRITER"/>
+		<result property="rCreatDate" column="R_CREATE_DATE"/>
+		<result property="rModifyDate" column="R_MODIFY_DATE"/>
+		<result property="rStatus" column="R_STATUS"/>
+	</resultMap>
+	
+	
+	
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE B_STATUS='Y'
+	</select>
+	
+	<select id="selectList" resultMap="boardResultSet">
+		SELECT *
+		FROM BOARD
+		WHERE B_STATUS='Y'
+		ORDER BY BID DESC
+	</select>
+	
+	
+	
+	<insert id="insertBoard" parameterType="Board">
+		INSERT INTO BOARD
+		VALUES(SEQ_BID.NEXTVAL, #{bTitle},#{bWriter},#{bContent},#{originalFileName},#{renameFileName},
+				DEFAULT,SYSDATE,SYSDATE,DEFAULT)
+	</insert>
+	
+	<select id="selectBoard" resultMap="boardResultSet">
+		SELECT * 
+		FROM BOARD
+		WHERE B_STATUS='Y' 
+		AND BID=#{bId}
+	</select>
+	
+	<update id="updateCount" parameterType="_int">
+		UPDATE BOARD
+		SET BCOUNT = BCOUNT+1
+		WHERE BID= #{bId}
+	</update>
+	
+	<update id="updateBoard" parameterType="board">
+		   UPDATE BOARD
+		   SET BTITLE=#{bTitle},BCONTENT=#{bContent},
+		   ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},
+		   B_MODIFY_DATE=SYSDATE
+		   WHERE BID= #{bId}
+	</update>
+	
+	<update id="deleteBoard" parameterType="_int">
+		UPDATE BOARD
+		SET B_STATUS = 'N'
+		WHERE BID= #{bid}
+	</update>
+	
+	
+	<select id="selectTopList" resultMap="boardResultSet"> <!-- 쿼라애 부등호가 있다면 CDATA로 감싸준다. -->
+		<![CDATA[
+		SELECT *
+		FROM (SELECT * 
+				FROM BOARD
+				ORDER BY BCOUNT DESC)
+		WHERE ROWNUM <= 5
+		]]>
+	</select>
+	
+	<select id="selectReplyList" resultMap="replyResultSet">
+		SELECT * 
+		FROM REPLY
+		WHERE R_STATUS ='Y'
+		AND REF_BID = #{bId}
+		ORDER BY RID DESC
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+		INSERT INTO REPLY
+		VALUES(SEQ_RID.NEXTVAL, #{rContent},#{refBid},#{rWriter},
+				SYSDATE,SYSDATE,DEFAULT)
+	</insert>
+	
+	
+	
+</mapper>

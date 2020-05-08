@@ -1,0 +1,1078 @@
+<style>
+
+
+#SMP-header .custom-navigation-container .mypage {
+	margin-left: 7px;
+}
+
+
+#SMP-header .custom-navigation-container .mypage-dropdown-button,
+#SMP-header .custom-navigation-container .language-dropdown-button {
+	position: relative;
+	padding: 14px 23px 8px 6px;
+	cursor: pointer;
+}
+
+
+#SMP-header .custom-navigation-container .mypage-dropdown-button:after,
+#SMP-header .custom-navigation-container .language-dropdown-button:after {
+	content: '';
+	position: absolute;
+	top: 24px;
+	right: 6px;
+	width: 9px;
+	height: 6px;
+	margin-top: -4px;
+	background-image: url('../img/icon/icon_down_arrow.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: center;
+}
+
+
+#SMP-header .custom-navigation-container .mypage-list,
+#SMP-header .custom-navigation-container .language-list {
+	display: none;
+	border: 1px solid #dbdbdb;
+	z-index: 40;
+}
+
+#SMP-header .custom-navigation-container li.mypage .mypage-dropdown-button:hover,
+#SMP-header .custom-navigation-container li.language .language-dropdown-button:hover {
+	color: #e92648;
+}
+
+#SMP-header .custom-navigation-container li.mypage:hover .mypage-list,
+#SMP-header .custom-navigation-container li.language:hover .language-list {
+	display: block;
+}
+
+#SMP-header .custom-navigation-container .mypage-list {
+	position: absolute;
+    right: 0;
+    bottom: -132px;
+	width: 80px;
+	height: 100px;
+	padding: 15px 14px;
+	text-align: center;
+	background: #fff;
+}
+
+#SMP-header .custom-navigation-container .mypage-list li > a {
+	display: block;
+	line-height: 20px;
+}
+
+#SMP-header .custom-navigation-container .mypage-list li:hover > a {
+	color: #e92648;
+}
+
+
+/* mypage main page start */
+#mypage,
+#myorder,
+#myWish,
+#myHistory,
+#mycoupon,
+#myReserve,
+#myEmoney,
+#myTodayView {
+	padding-top: 36.5px;
+	padding-left: 150px;
+    padding-right: 100px;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.mypage .mypage-common-container .mypage-link-container {
+	margin-bottom: 10.5px;
+}
+
+.mypage .mypage-common-container .mypage-link-container > a {
+	display: inline-block;
+	font-size: 13px;
+	color: #adadad;
+	line-height: 20px;
+}
+
+.mypage .mypage-common-container .mypage-link-container > .test:before {
+	content: '>';
+	display: inline-block;
+	margin: 0 5px;
+}
+
+.mypage .mypage-common-container .mypage-link-container > a:first-child:before {
+	display: none;
+}
+
+.mypage .mypage-common-container .mypage-link-container .home {
+	display: inline-block;
+	width: 16px;
+	height: 14px;
+	text-indent: -9999px;
+	background-image: url('/brocoli/resources/mainResources/images/mypage_home1.png');
+	background-size: 100%;
+	background-position: center;
+}
+
+.mypage .mypage-member-info-container > h2,
+#myTodayView .mypage-member-info-container > h2 {
+	font-weight: lighter;
+	font-size: 33px;
+	color: #333;
+	text-align: center;
+}
+
+.mypage .mypage-member-info-container .mypage-member-info {
+	width: 1150px;
+	padding: 0 8px 0 27px;
+	margin-top: 42px;
+	font-size: 0;
+	color: #fff;
+	background: #333;
+}
+
+.mypage .mypage-member-info-container .mypage-member-info > div {
+	display: inline-block;
+	padding: 29px 0 33px;
+}
+
+.mypage .mypage-member-info-container .mypage-member-info .member-id-container {
+	
+	position: relative;
+	top:10px;
+	width: 259px;
+	font-weight: lighter;
+	font-size: 15px;
+	text-align: left;
+}
+
+.mypage .mypage-member-info-container .mypage-member-info .member-id-container .group-image {
+	float: left;
+	height: 80px;
+}
+
+.mypage .mypage-member-info-container .mypage-member-info .member-id-container .group-image > img {
+	position: relative;
+	top: 19px;
+	left: 0;
+	width: auto;
+	height: 35px;
+	padding-right: 8px;
+}
+
+.mypage .mypage-member-info-container .mypage-member-info .member-id-container .id {
+	font-size: 25px;
+}
+
+.mypage .mypage-member-info-container .mypage-member-info .member-reserve-container,
+.mypage .mypage-member-info-container .mypage-member-info .member-deposit-container,
+.mypage .mypage-member-info-container .mypage-member-info .member-order-total-price-container {
+	position: relative;
+	width: 285px;
+	padding-right: 70px;
+	font-size: 14px;
+	text-align: right;
+}
+.mypage .mypage-member-info-container .mypage-member-info .member-reserve-container:after,
+.mypage .mypage-member-info-container .mypage-member-info .member-deposit-container:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 1px;
+	height: 36px;
+	background: #717171;
+}
+
+.mypage .mypage-member-info-container .mypage-member-info .member-reserve-container > p:first-child,
+.mypage .mypage-member-info-container .mypage-member-info .member-deposit-container > p:first-child,
+.mypage .mypage-member-info-container .mypage-member-info .member-order-total-price-container > p:first-child {
+	margin-bottom: 12px;
+	font-weight: lighter;
+}
+
+.mypage .mypage-member-info-container .mypage-member-info .member-reserve-container .reserve,
+.mypage .mypage-member-info-container .mypage-member-info .member-deposit-container .deposit,
+.mypage .mypage-member-info-container .mypage-member-info .member-order-total-price-container .order-total-price {
+	font-size: 36px;
+	color: #fff;
+}
+
+.mypage .mypage-member-info-container .mypage-member-info .member-reserve-container > p > span,
+.mypage .mypage-member-info-container .mypage-member-info .member-deposit-container > p > span,
+.mypage .mypage-member-info-container .mypage-member-info .member-order-total-price-container > p > span {
+	position: relative;
+    top: 4.5px;
+    margin-left: 4px;
+	font-weight: lighter;
+}
+
+.mypage .mypage-menu-container {
+	position: relative;
+	padding-top: 64px;
+	margin-bottom: 55px;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list {
+	font-size: 0;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li {
+	position: relative;
+	display: inline-block;
+	width: 230px;
+	text-align: center;
+	vertical-align: top;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li > a {
+	display: block;
+	padding-top: 86px;
+	padding-bottom: 15.5px;
+	background-repeat: no-repeat;
+	background-position: center 10px;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li.selected:after {
+	content: '';
+	position: absolute;
+	bottom: -15px;
+	left: 50%;
+	width: 27px;
+	height: 15px;
+	margin-left: -13.5px;
+	background-image: url('../img/icon/icon_mypage_down_arrow.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center center;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li.my-info > a {
+	background-image: url('/brocoli/resources/mainResources/images/mypage_me1.png');
+	background-size: 55px 55px;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li.my-info:hover > a,
+.mypage .mypage-menu-container .mypage-menu-list > li.my-info.selected > a {
+	background-image: url('/brocoli/resources/mainResources/images/mypage_me1.png');
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li.order-list > a {
+	background-image: url('/brocoli/resources/mainResources/images/mypage_list1.png');
+	background-size: 55px 55px;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li.order-list:hover > a,
+.mypage .mypage-menu-container .mypage-menu-list > li.order-list.selected > a {
+	background-image: url('/brocoli/resources/mainResources/images/mypage_list1.png');
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li.wish-list > a {
+	background-image: url('/brocoli/resources/mainResources/images/mypage_like1.png');
+	background-size: 55px 55px;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li.wish-list:hover > a,
+.mypage .mypage-menu-container .mypage-menu-list > li.wish-list.selected > a {
+	background-image: url('/brocoli/resources/mainResources/images/mypage_like1.png');
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li.reserve-deposit > a {
+	background-image: url('/brocoli/resources/mainResources/images/mypage_cart1.png');
+	background-size: 55px 55px;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li.reserve-deposit:hover > a,
+.mypage .mypage-menu-container .mypage-menu-list > li.reserve-deposit.selected > a {
+	background-image: url('/brocoli/resources/mainResources/images/mypage_cart1.png');
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li.my-article > a {
+	background-image: url('/brocoli/resources/mainResources/images/mypage_my1.png');
+	background-size: 55px 55px;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li.my-article:hover > a,
+.mypage .mypage-menu-container .mypage-menu-list > li.my-article.selected > a {
+	background-image: url('/brocoli/resources/mainResources/images/mypage_my1.png');
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li > a > h4 {
+	font-size: 18px;
+	color: #adadad;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li > a > p {
+	margin-top: 12px;
+	font-weight: lighter;
+	font-size: 13px;
+	color: #adadad;
+	line-height: 20px;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li:hover > a > h4,
+.mypage .mypage-menu-container .mypage-menu-list > li.selected > a > h4 {
+	color: #333;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list > li:hover > a > p,
+.mypage .mypage-menu-container .mypage-menu-list > li.selected > a > p {
+	color: #666;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list .with-draw {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: auto;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list .with-draw > a {
+	padding: 7px 20px;
+	font-weight: 300;
+	font-size: 14px;
+	color: #adadad;
+	line-height: 20px;
+}
+
+.mypage .mypage-menu-container .mypage-menu-list .with-draw:hover > a {
+	color: #666;
+}
+/* mypage main page end */
+
+/* mypage order list page start */
+#myorder .order-list-container > h3 {
+	font-size: 18px;
+}
+
+#myorder .order-list-container .order-list {
+	padding-bottom: 30px;
+	margin-top: 20px;
+}
+
+#myorder .order-list-container .order-list td.order-product {
+	padding-left: 10px;
+	text-align: left;
+}
+
+#myorder .order-list-container .default-paging-container {
+	margin-top: 60px;
+}
+
+#myorder .order-desc {
+	margin-bottom: 50px;
+}
+
+#myorder .order-desc > p {
+	color: #999;
+}
+/* mypage order list page end */
+
+/* mypage wish list page start */
+#myWish .wish-list-container,
+#myTodayView .today-view-list-container {
+	position: relative;
+	margin-bottom: 70px;
+}
+
+#myTodayView .today-view-list-container {
+	padding-top: 27px;
+}
+
+#myWish .wish-list-container > h3 {
+	font-size: 18px;
+}
+
+#myWish .wish-list-container .wish-list,
+#myTodayView .today-view-list-container .today-view-list {
+	margin-top: 20px;
+}
+
+#myWish .wish-list-container .wish-list .product-image,
+#myTodayView .today-view-list-container .today-view-list .product-image {
+	padding: 5px 0;
+}
+
+#myWish .wish-list-container .wish-list .product-image > a,
+#myTodayView .today-view-list-container .today-view-list .product-image > a {
+	display: block;
+	width: 60px;
+	height: 90px;
+	margin: 0 auto;
+}
+
+#myWish .wish-list-container .wish-list .product-image > a > img,
+#myTodayView .today-view-list-container .today-view-list .product-image > a > img {
+	width: 100%;
+}
+
+#myWish .wish-list-container .wish-list .product-info,
+#myTodayView .today-view-list-container .today-view-list .product-info {
+	padding-left: 20px;
+	text-align: left;
+}
+
+#myWish .wish-list-container .wish-list .product-info .product-option {
+	display: inline-block;
+	margin-left: 5px;
+}
+
+#myWish .wish-list-container .wish-list .product-quantity > input,
+#myTodayView .today-view-list-container .today-view-list .product-quantity > input {
+	width: 35px;
+	height: 25px;
+	margin-right: 5px;
+	text-align: center;
+}
+
+#myWish .wish-list-container .wish-list .button-list > a,
+#myTodayView .today-view-list-container .today-view-list .button-list > a {
+	display: block;
+	width: 68px;
+    border: 1px solid #e5e5e5;
+    margin: 5px auto 0;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+#myWish .wish-list-container .wish-list .button-list > a.add-basket-button,
+#myTodayView .today-view-list-container .today-view-list .button-list > a.add-basket-button {
+	border-color: #333;
+	color: #fff;
+	background: #333;
+}
+
+#myWish .wish-list-container .wish-list .button-list > a.add-basket-button:hover,
+#myTodayView .today-view-list-container .today-view-list .button-list > a.add-basket-button:hover {
+	border-color: #e5e5e5;
+	color: #363636;
+	background: #fff;
+}
+
+#myWish .wish-list-container .wish-list .button-list > a:first-child,
+#myTodayView .today-view-list-container .today-view-list .button-list > a:first-child {
+	margin-top: 0;
+}
+
+#myWish .wish-list-container .default-paging-container {
+	margin-top: 60px;
+}
+
+#myWish .wish-list-container .add-button-list,
+#myTodayView .today-view-list-container .add-button-list {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#myWish .wish-list-container .add-button-list > a,
+#myTodayView .today-view-list-container .add-button-list > a {
+	display: inline-block;
+	width: 88px;
+	height: 32px;
+	border: 1px solid #e5e5e5;
+	margin-left: 5px;
+	font-size: 13px;
+	text-align: center;
+	line-height: 32px;
+}
+
+#myWish .wish-list-container .add-button-list > a:hover,
+#myTodayView .today-view-list-container .add-button-list > a:hover {
+	color: #e92648;
+}
+
+#myWish .wish-list-container .add-button-list > a:first-child,
+#myTodayView .today-view-list-container .add-button-list > a:first-child {
+	margin-left: 0;
+}
+
+#myorder .order-list-container .order-list .no-order,
+#myWish .wish-list-container .wish-list .no-wish,
+#myTodayView .today-view-list-container .today-view-list .no-today-view {
+	padding: 20px 0;
+	color: #999
+}
+
+#myorder .order-list-container .order-list .no-order > img,
+#myWish .wish-list-container .wish-list .no-wish > img,
+#myTodayView .today-view-list-container .today-view-list .no-today-view > img {
+	width: 60px;
+}
+
+#myorder .order-list-container .order-list .no-order .title,
+#myWish .wish-list-container .wish-list .no-wish .title,
+#myTodayView .today-view-list-container .today-view-list .no-today-view .title {
+	margin-top: 15px;
+	font-size: 14px;
+}
+
+#myorder .order-list-container .order-list .no-order .sub-title,
+#myWish .wish-list-container .wish-list .no-wish .sub-title,
+#myTodayView .today-view-list-container .today-view-list .no-today-view .sub-title {
+	font-size: 12px;
+}
+/* mypage wish list page end */
+
+
+/* mypage order list page start */
+#myorder .order-list-container > h3 {
+	font-size: 18px;
+}
+
+#myorder .order-list-container .order-list {
+	padding-bottom: 30px;
+	margin-top: 20px;
+}
+
+#myorder .order-list-container .order-list td.order-product {
+	padding-left: 10px;
+	text-align: left;
+}
+
+#myorder .order-list-container .default-paging-container {
+	margin-top: 60px;
+}
+
+#myorder .order-desc {
+	margin-bottom: 50px;
+}
+
+#myorder .order-desc > p {
+	color: #999;
+}
+/* mypage order list page end */
+
+/* mypage wish list page start */
+#myWish .wish-list-container,
+#myTodayView .today-view-list-container {
+	position: relative;
+	margin-bottom: 70px;
+}
+
+#myTodayView .today-view-list-container {
+	padding-top: 27px;
+}
+
+#myWish .wish-list-container > h3 {
+	font-size: 18px;
+}
+
+#myWish .wish-list-container .wish-list,
+#myTodayView .today-view-list-container .today-view-list {
+	margin-top: 20px;
+}
+
+#myWish .wish-list-container .wish-list .product-image,
+#myTodayView .today-view-list-container .today-view-list .product-image {
+	padding: 5px 0;
+}
+
+#myWish .wish-list-container .wish-list .product-image > a,
+#myTodayView .today-view-list-container .today-view-list .product-image > a {
+	display: block;
+	width: 60px;
+	height: 90px;
+	margin: 0 auto;
+}
+
+#myWish .wish-list-container .wish-list .product-image > a > img,
+#myTodayView .today-view-list-container .today-view-list .product-image > a > img {
+	width: 100%;
+}
+
+#myWish .wish-list-container .wish-list .product-info,
+#myTodayView .today-view-list-container .today-view-list .product-info {
+	padding-left: 20px;
+	text-align: left;
+}
+
+#myWish .wish-list-container .wish-list .product-info .product-option {
+	display: inline-block;
+	margin-left: 5px;
+}
+
+#myWish .wish-list-container .wish-list .product-quantity > input,
+#myTodayView .today-view-list-container .today-view-list .product-quantity > input {
+	width: 35px;
+	height: 25px;
+	margin-right: 5px;
+	text-align: center;
+}
+
+#myWish .wish-list-container .wish-list .button-list > a,
+#myTodayView .today-view-list-container .today-view-list .button-list > a {
+	display: block;
+	width: 68px;
+    border: 1px solid #e5e5e5;
+    margin: 5px auto 0;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+#myWish .wish-list-container .wish-list .button-list > a.add-basket-button,
+#myTodayView .today-view-list-container .today-view-list .button-list > a.add-basket-button {
+	border-color: #333;
+	color: #fff;
+	background: #333;
+}
+
+#myWish .wish-list-container .wish-list .button-list > a.add-basket-button:hover,
+#myTodayView .today-view-list-container .today-view-list .button-list > a.add-basket-button:hover {
+	border-color: #e5e5e5;
+	color: #363636;
+	background: #fff;
+}
+
+#myWish .wish-list-container .wish-list .button-list > a:first-child,
+#myTodayView .today-view-list-container .today-view-list .button-list > a:first-child {
+	margin-top: 0;
+}
+
+#myWish .wish-list-container .default-paging-container {
+	margin-top: 60px;
+}
+
+#myWish .wish-list-container .add-button-list,
+#myTodayView .today-view-list-container .add-button-list {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#myWish .wish-list-container .add-button-list > a,
+#myTodayView .today-view-list-container .add-button-list > a {
+	display: inline-block;
+	width: 88px;
+	height: 32px;
+	border: 1px solid #e5e5e5;
+	margin-left: 5px;
+	font-size: 13px;
+	text-align: center;
+	line-height: 32px;
+}
+
+#myWish .wish-list-container .add-button-list > a:hover,
+#myTodayView .today-view-list-container .add-button-list > a:hover {
+	color: #e92648;
+}
+
+#myWish .wish-list-container .add-button-list > a:first-child,
+#myTodayView .today-view-list-container .add-button-list > a:first-child {
+	margin-left: 0;
+}
+
+#myorder .order-list-container .order-list .no-order,
+#myWish .wish-list-container .wish-list .no-wish,
+#myTodayView .today-view-list-container .today-view-list .no-today-view {
+	padding: 20px 0;
+	color: #999
+}
+
+#myorder .order-list-container .order-list .no-order > img,
+#myWish .wish-list-container .wish-list .no-wish > img,
+#myTodayView .today-view-list-container .today-view-list .no-today-view > img {
+	width: 60px;
+}
+
+#myorder .order-list-container .order-list .no-order .title,
+#myWish .wish-list-container .wish-list .no-wish .title,
+#myTodayView .today-view-list-container .today-view-list .no-today-view .title {
+	margin-top: 15px;
+	font-size: 14px;
+}
+
+#myorder .order-list-container .order-list .no-order .sub-title,
+#myWish .wish-list-container .wish-list .no-wish .sub-title,
+#myTodayView .today-view-list-container .today-view-list .no-today-view .sub-title {
+	font-size: 12px;
+}
+/* mypage wish list page end */
+
+/* mypage my article list page start */
+#myHistory .my-board-list-container {
+	margin-bottom: 15px;
+}
+
+#myHistory .my-board-list-container .my-board-list {
+	height: auto;
+	margin: 0;
+}
+
+#myHistory .my-board-list-container .my-board-list > li {
+	display: inline-block;
+	margin: 0 7px;
+}
+
+#myHistory .my-board-list-container .my-board-list > li > a {
+	display: block;
+	padding: 8px 4px;
+	font-size: 14px;
+	color: #adadad;
+}
+
+#myHistory .my-board-list-container .my-board-list > li:hover > a {
+	color: #333;
+}
+
+#myHistory .my-board-list-container .my-board-list > li > a[style="font-weight:bold"] {
+	font-weight: normal !important;
+	color: #333;
+	border-bottom: 2px solid #333;
+}
+
+#myHistory .my-article-list-container {
+	position: relative;
+	margin-bottom: 70px;
+}
+
+#myHistory .my-article-list-container > div {
+	position: relative;
+}
+
+#myHistory .my-article-list-container .title-container > * {
+	display: inline-block;
+}
+
+#myHistory .my-article-list-container .title-container h3 {
+	font-size: 18px;
+}
+
+#myHistory .my-article-list-container .title-container .article-count {
+	position: relative;
+	padding-left: 8px;
+	margin-left: 5px;
+	color: #999;
+}
+
+#myHistory .my-article-list-container .title-container .article-count:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1px;
+	height: 100%;
+	background: #999;
+}
+
+#myHistory .my-article-list-container .page-number {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	color: #999;
+}
+
+#myHistory .my-article-list-container .my-article-list {
+	margin-top: 20px;
+}
+
+#myHistory .my-article-list-container .my-article-list .article-subject {
+	padding-left: 20px;
+	text-align: left;
+}
+
+#myHistory .my-article-list-container .my-article-list .no-article {
+	padding: 20px 0;
+	color: #999
+}
+
+#myHistory .my-article-list-container .my-article-list .no-article > img {
+	width: 60px;
+}
+
+#myHistory .my-article-list-container .my-article-list .no-article .title {
+	margin-top: 15px;
+	font-size: 14px;
+}
+
+#myHistory .my-article-list-container .my-article-list .no-article .sub-title {
+	font-size: 12px;
+}
+
+#myHistory .my-article-list-container .default-paging-container {
+	margin-top: 60px;
+}
+/* mypage my article list page end */
+
+/* mypage coupon list page start */
+.mypage .tab-list-container {
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.mypage .tab-list-container .tab-list > li {
+	display: inline-block;
+	margin: 0 7px;
+}
+
+.mypage .tab-list-container .tab-list > li > a {
+	display: block;
+	padding: 8px 4px;
+	font-size: 14px;
+	color: #adadad;
+}
+
+.mypage .tab-list-container .tab-list > li:hover > a {
+	color: #333;
+}
+
+.mypage .tab-list-container .tab-list > li.selected > a {
+	color: #333;
+	border-bottom: 2px solid #333;
+}
+
+#mycoupon .coupon-list-container > h3 {
+	font-size: 18px;
+}
+
+#mycoupon .coupon-list-container .coupon-list {
+	margin-top: 20px;
+}
+
+#mycoupon .coupon-list-container .coupon-list .coupon-name {
+	padding-left: 10px;
+	text-align: left;
+}
+
+#mycoupon .coupon-list-container .coupon-list .no-coupon {
+	padding: 20px 0;
+	color: #999;
+}
+
+#mycoupon .coupon-list-container .coupon-list .no-coupon > img {
+	width: 60px;
+}
+
+#mycoupon .coupon-list-container .coupon-list .no-coupon .title {
+	margin-top: 15px;
+	font-size: 14px;
+}
+
+#mycoupon .coupon-list-container .coupon-list .no-coupon .sub-title {
+	font-size: 12px;
+}
+
+#mycoupon .coupon-list-container .coupon-list .coupon-regist-container {
+	padding: 30px 0;
+	text-align: center;
+	border-bottom: 1px solid #e6e6e6;
+	background: #f2f2f2;
+}
+
+#mycoupon .coupon-list-container .coupon-list .coupon-regist-container input {
+	width: 68px;
+	height: 32px;
+	border: 1px solid #adadad;
+}
+
+#mycoupon .coupon-list-container .coupon-list .coupon-regist-container .regist-button {
+	display: inline-block;
+    height: 32px;
+	padding: 0 20px;
+    border: 1px solid #e5e5e5;
+    margin-left: 30px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 32px;
+	background: #fff;
+}
+
+#mycoupon .coupon-list-container .coupon-list .coupon-regist-container .regist-button:hover {
+	color: #e92648;
+}
+
+#mycoupon .coupon-list-container .coupon-list .coupon-regist-container > p {
+	margin-top: 15px;
+	color: #666;
+}
+
+#mycoupon .coupon-list-container .default-paging-container {
+	margin-top: 30px;
+}
+
+#mycoupon .add-info-container {
+	margin-top: 30px;
+	margin-bottom: 50px;
+	line-height: 18px;
+}
+
+#mycoupon .add-info-container p,
+#mycoupon .add-info-container ol li {
+	padding-left: 8px;
+	font-size: 11px;
+	color: #999;
+}
+
+#mycoupon .add-info-container .notice-info {
+	margin-top: 25px;
+}
+
+#mycoupon .coupon_layer {
+    position: absolute;
+    white-space: nowrap;
+    border: 2px solid #cdcdcd;
+    background: white;
+    padding: 10px;
+    color: #666666;
+}
+/* mypage coupon list page end */
+
+/* mypage reserve list page start */
+#myReserve .reserve-list-container {
+	position: relative;
+}
+
+#myReserve .reserve-list-container .reserve-search-container {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#myReserve .reserve-list-container .reserve-search-form .search-button {
+	display: inline-block;
+    height: 19px;
+    border: 1px solid #e5e5e5;
+    padding: 0 15px;
+    line-height: 19px;
+    margin-left: 10px;
+}
+
+#myReserve .reserve-list-container .reserve-search-form .search-button:hover {
+	color: #e92648;
+}
+
+#myReserve .reserve-list-container > h3 {
+	font-size: 18px;
+}
+
+#myReserve .reserve-list-container .reserve-list {
+	margin-top: 20px;
+}
+
+#myReserve .reserve-list-container .reserve-list .reserve-content {
+	padding-left: 10px;
+	text-align: left;
+}
+
+#myReserve .reserve-list-container .reserve-list .no-reserve {
+	padding: 20px 0;
+	color: #999;
+}
+
+#myReserve .reserve-list-container .reserve-list .no-reserve > img {
+	width: 60px;
+}
+
+#myReserve .reserve-list-container .reserve-list .no-reserve .title {
+	margin-top: 15px;
+	font-size: 14px;
+}
+
+#myReserve .reserve-list-container .reserve-list .no-reserve .sub-title {
+	font-size: 12px;
+}
+
+#myReserve .reserve-list-container .total-reserve-container {
+	padding: 10px 30px 10px 0;
+	border-bottom: 1px solid #e6e6e6;
+	font-size: 0;
+	text-align: right;
+	background: #f2f2f2;
+}
+
+#myReserve .reserve-list-container .total-reserve-container > p {
+	display: inline-block;
+	font-size: 12px;
+	color: #666;
+}
+
+#myReserve .reserve-list-container .total-reserve-container .total-reserve:after {
+	content: '|';
+	display: inline-block;
+	margin: 0 10px;
+}
+
+#myReserve .reserve-list-container .total-reserve-container > p > span {
+	font-weight: bold;
+	color: #333;
+}
+
+#myReserve .reserve-list-container .default-paging-container {
+	margin-top: 30px;
+}
+
+#myReserve .add-info-container {
+	margin-top: 30px;
+	margin-bottom: 50px;
+	line-height: 18px;
+}
+
+#myReserve .add-info-container > p {
+	font-size: 11px;
+	color: #999;
+}
+/* mypage reserve list page end */
+
+/* mypage deposit list page start */
+#myEmoney .deposit-list-container > h3 {
+	font-size: 18px;
+}
+
+#myEmoney .deposit-list-container .deposit-list {
+	margin-top: 20px;
+}
+
+#myEmoney .deposit-list-container .deposit-list .deposit-content {
+	padding-left: 10px;
+	text-align: left;
+}
+
+#myEmoney .deposit-list-container .deposit-list .no-deposit {
+	padding: 20px 0;
+	color: #999;
+}
+
+#myEmoney .deposit-list-container .deposit-list .no-deposit > img {
+	width: 60px;
+}
+
+#myEmoney .deposit-list-container .deposit-list .no-deposit .title {
+	margin-top: 15px;
+	font-size: 14px;
+}
+
+#myEmoney .deposit-list-container .deposit-list .no-deposit .sub-title {
+	font-size: 12px;
+}
+
+#myEmoney .deposit-list-container .total-deposit-container {
+	padding: 10px 30px 10px 0;
+	border-bottom: 1px solid #e6e6e6;
+	color: #666;
+	text-align: right;
+	background: #f2f2f2;
+}
+
+#myEmoney .deposit-list-container .total-deposit-container > p > span {
+	font-weight: bold;
+	color: #333;
+}
+
+#myEmoney .deposit-list-container .default-paging-container {
+	margin-top: 30px;
+}
+
+#myEmoney .add-info-container {
+	margin-top: 30px;
+	margin-bottom: 50px;
+	line-height: 18px;
+}
+
+#myEmoney .add-info-container > p {
+	font-size: 11px;
+	color: #999;
+}
+/* mypage deposit list page end */
+
+</style>

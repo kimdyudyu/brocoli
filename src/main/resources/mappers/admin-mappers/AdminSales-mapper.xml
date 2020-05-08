@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminSales">
+	<resultMap id="salesResultSet" type="Orders">
+		<id property="or_NO" column="OR_NO"/>
+		<result property="or_Date" column="OR_DATE"/>
+		<result property="or_Pname" column="OR_PNAME"/>
+		<result property="or_Option1" column="OR_OPTION1"/>
+		<result property="or_Option2" column="OR_OPTION2"/>
+		<result property="or_Amount" column="OR_AMOUNT"/>
+		<result property="or_Address" column="OR_ADDRESS"/>
+		<result property="or_Message" column="OR_MESSAGE"/>
+		<result property="or_Price" column="OR_PRICE"/>
+		<result property="or_Status" column="OR_STATUS"/>
+		<result property="or_Deliver_Num" column="OR_DELIVER_NUM"/>
+		<result property="or_Deliver_Vender" column="OR_DELIVER_VENDER"/>
+		<result property="or_Mno" column="OR_MNO"/>
+		<result property="or_P_NO" column="OR_P_NO"/>
+		<result property="or_Brand_NO" column="OR_BRAND_NO"/>
+		
+		<collection property="or_Brand" resultMap="brandResultSet"/>
+		
+	</resultMap>
+	
+	<resultMap id="brandResultSet" type="Brand">
+		<id property="brand_NO" column="BRAND_NO"/>
+		<result property="b_Name" column="B_NAME"/>
+		<result property="b_Logo" column="B_LOGO"/>
+		<result property="b_Logo_ReName" column="B_LOGO_RENAME"/>
+		<result property="b_Business_NO" column="B_BUSINESS_NO"/>
+		<result property="b_Status" column="B_STATUS"/>
+		<result property="b_Enter_Date" column="B_ENTER_DATE"/>
+		<result property="b_Close_Date" column="B_CLOSE_DATE"/>
+		<result property="b_Close_Content" column="B_CLOSE_CONTENT"/>
+		<result property="b_Modify_ID" column="B_MODIFY_ID"/>
+		<result property="b_Modify_Date" column="B_MODIFY_DATE"/>
+		<result property="b_Owner1_ID" column="B_OWNER1_ID"/>
+		<result property="b_Owner2_ID" column="B_OWNER2_ID"/>
+		<result property="b_Owner3_ID" column="B_OWNER3_ID"/>
+		<result property="b_Phone" column="B_PHONE"/>
+		<result property="b_Address" column="B_ADDRESS"/>
+		<result property="b_Owner_Name" column="B_OWNER_NAME"/>
+		<result property="b_Comment" column="B_COMMENT"/>
+		<result property="b_Email1" column="B_EMAIL1"/>
+		<result property="b_Email2" column="B_EMAIL2"/>
+		<result property="b_Email3" column="B_EMAIL3"/>
+	</resultMap>
+	
+	<select id="selectSalesList" resultMap="salesResultSet" parameterType="Orders">
+		SELECT * 
+		FROM ORDERS
+		JOIN BRAND ON OR_BRAND_NO = BRAND_NO
+		WHERE OR_STATUS = '5'
+		ORDER BY OR_NO DESC
+	</select>
+	
+	<select id="searchList" resultMap="salesResultSet" parameterType="map">
+		SELECT *
+		FROM ORDERS
+		JOIN BRAND ON OR_BRAND_NO = BRAND_NO
+		WHERE  OR_STATUS = '5'
+      	       <if test=' !"".equals(date1) and !"".equals(date2) '>
+		       			<![CDATA[
+			      	   AND OR_DATE>#{date1} AND OR_DATE<#{date2} 
+				       ]]>
+		       </if>
+		       
+		       <if test='!"".equals(content)'>
+				       <choose>
+      	       	    	<when test='"brand_NO".equals(dropSearch)'>
+      	       	 		AND BRAND_NO LIKE #{content}
+      	       	    	</when>
+      	       	    	<when test='"b_Name".equals(dropSearch)'>
+      	       	 		AND B_NAME LIKE '%'||#{content}||'%'
+      	       	    	</when>
+      	       	    	<when test='"p_NO".equals(dropSearch)'>
+      	       	 		AND OR_P_NO LIKE #{content}
+      	       	    	</when>
+      	       	    	<when test='"p_Name".equals(dropSearch)'>
+      	       	 		AND OR_PNAME LIKE '%'||#{content}||'%'
+      	       	    	</when>
+      	       	    	</choose>
+		       </if>
+	</select>
+	
+	
+	
+	<!-- <select id="searchList" resultMap="salesResultSet" parameterType="map">
+		SELECT *
+		FROM ORDERS
+		JOIN BRAND ON OR_BRAND_NO = BRAND_NO
+		WHERE  OR_STATUS = '5'
+      	       <if test=' !"".equals(date1) and !"".equals(date2) and !"".equals(dropSearch)'>
+		       		<if test='"".equals(content)'>
+		       			<![CDATA[
+			      	   AND OR_DATE>#{date1} AND OR_DATE<#{date2} 
+				       ]]>
+		       		</if>
+		       		 <if test='!"".equals(content)'>
+					   <![CDATA[
+			      	   AND OR_DATE>#{date1} AND OR_DATE<#{date2} 
+				       ]]>
+				       <choose>
+      	       	    	<when test="brand_NO = #{dropSearch}">
+      	       	 		AND BRAND_NO LIKE #{content}
+      	       	    	</when>
+      	       	    	<when test="B_NAME = #{dropSearch}">
+      	       	 		AND B_NAME LIKE '%' + #{content} + '%'
+      	       	    	</when>
+      	       	    	<when test="p_NO = #{dropSearch}">
+      	       	 		AND OR_P_NO LIKE #{content}
+      	       	    	</when>
+      	       	    	<when test="p_Name = #{dropSearch}">
+      	       	 		AND OR_PNAME LIKE '%' + #{content} + '%'
+      	       	    	</when>
+      	       	    	</choose>
+		       		</if> 
+		       </if>
+		       
+		       <if test='date1.equals("") and date2.equals("") and !"".equals(dropSearch) and !"".equals(content)'>
+		       		<choose>
+   	       	    	<when test="brand_NO = #{dropSearch}">
+   	       	 		AND BRAND_NO LIKE #{content}
+   	       	    	</when>
+   	       	    	<when test="B_NAME = #{dropSearch}">
+   	       	 		AND B_NAME LIKE '%' + #{content} + '%'
+   	       	    	</when>
+   	       	    	<when test="p_NO = #{dropSearch}">
+   	       	 		AND OR_P_NO LIKE #{content}
+   	       	    	</when>
+   	       	    	<when test="p_Name = #{dropSearch}">
+   	       	 		AND OR_PNAME LIKE '%' + #{content} + '%'
+   	       	    	</when>
+   	       	    	</choose>
+		       </if>
+	</select> -->
+</mapper>

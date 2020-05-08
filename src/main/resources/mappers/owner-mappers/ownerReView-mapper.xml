@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ownerReView-mapper">
+	
+	<resultMap type="Review" id="reviewResultSet">
+		<id property="v_NO" column="V_NO"/>
+		
+		<result property="v_Writer" column="V_WRITER"/>
+		<result property="v_Content" column="V_CONTENT"/>
+		<result property="v_Date" column="V_DATE"/>
+		<result property="v_Modify_Date" column="V_MODIFY_DATE"/>
+		<result property="v_Count" column="V_COUNT"/>
+		<result property="v_Score" column="V_SCORE"/>
+		<result property="v_Check" column="V_CHECK"/>
+		<result property="v_Status" column="V_STATUS"/>
+		<result property="v_Img1" column="V_IMG1"/>
+		<result property="v_Img1_ReName" column="V_IMG1_RENAME"/>
+		<result property="v_Img2" column="V_IMG2"/>
+		<result property="v_Img2_ReName" column="V_IMG2_RENAME"/>		
+		<result property="v_Mno" column="V_MNO"/>
+		<result property="v_P_NO" column="V_P_NO"/>
+		<result property="v_B_NO" column="V_B_NO"/>
+	
+		<collection property="plist" resultMap="productResultSet"/>
+	</resultMap>
+	
+	<resultMap type="Review_Reply" id="reviewReplyResultSet">
+		<id property="vr_NO" column="VR_NO"/>
+		
+		<result property="vr_Parentno" column="VR_PARENTNO"/>
+		<result property="vr_Writer" column="VR_WRITER"/>
+		<result property="vr_Content" column="VR_CONTENT"/>
+		<result property="vr_Date" column="VR_DATE"/>
+		<result property="vr_Modify_Date" column="VR_MODIFY_DATE"/>
+		<result property="vr_Count" column="VR_COUNT"/>
+		<result property="vr_Check" column="VR_STATUS"/>
+		<result property="vr_Status" column="VR_CHECK"/>
+		<result property="vr_Mno" column="VR_MNO"/>
+		
+		<collection property="mlist" resultMap="memberResultSet"/>
+		<collection property="blist" resultMap="brandResultSet"/>
+	</resultMap>
+	
+	<resultMap type="Member" id="memberResultSet">
+		<id property="mNO" column="MNO"/>
+		<result property="mId" column="MID"/>
+		<result property="pwd" column="PWD"/>
+		<result property="mName" column="MNAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="gender" column="GENDER"/>
+		<result property="birthDay" column="BIRTHDAY"/>
+		<result property="mGrant" column="MGRANT"/>
+		<result property="mPoint" column="MPOINT"/>
+		<result property="order_Count" column="ORDER_COUNT"/>
+		<result property="order_Price" column="ORDER_PRICE"/>
+		<result property="report_YN" column="REPORT_YN"/>
+		<result property="block_YN" column="BLOCK_YN"/>
+		<result property="block_Content" column="BLOCK_CONTENT"/>
+		<result property="del_Flag_YN" column="DEL_FLAG_YN"/>
+		<result property="del_Date" column="DEL_DATE"/>
+		<result property="enrollDate" column="ENROLLDATE"/>
+		<result property="brand" column="BRAND"/>
+		<result property="brand_NO" column="BRAND_NO"/>
+	</resultMap>
+	
+	<resultMap id="productResultSet" type="Product" >
+		<id property="p_NO" column="P_NO"/>
+		
+		<result property="p_Name" column="P_NAME"/>
+		<result property="p_Price" column="P_PRICE"/>
+		<result property="p_Sail_Price" column="P_SAIL_PRICE"/>
+		<result property="p_Last_Price" column="P_LAST_PRICE"/>
+		<result property="p_Bcategory" column="P_BCATEGORY"/>
+		<result property="p_Scategory" column="P_SCATEGORY"/>
+		<result property="p_Comment" column="P_COMMENT"/>
+		<result property="p_Order_Count" column="P_ORDER_COUNT"/>
+		<result property="p_Status" column="P_STATUS"/>
+		<result property="p_Writer" column="P_WRITER"/>
+		<result property="p_Insert_Date" column="P_INSERT_DATE"/>
+		<result property="p_Modify_Id" column="P_MODIFY_ID"/>
+		<result property="p_Modify_Date" column="P_MODIFY_DATE"/>
+		<result property="p_Show_YN" column="P_SHOW_YN"/>
+		<result property="p_Brand_NO" column="P_BRAND_NO"/>
+		
+		<collection property="pfList" resultMap="ProductFileResultSet"/>
+	</resultMap>
+	
+	<!-- 상품 이미지 등록정보 -->
+	<resultMap  type="Product_File" id="ProductFileResultSet">
+		<id property="pf_NO" column="PF_NO"/>
+		
+		<result property="pf_Img1" column="PF_IMG1"/>
+		<result property="pf_Img1_ReName" column="PF_IMG1_RENAME"/>
+		<result property="pf_Img2" column="PF_IMG2"/>
+		<result property="pf_Img2_ReName" column="PF_IMG2_RENAME"/>
+		<result property="pf_Img3" column="PF_IMG3"/>
+		<result property="pf_Img3_ReName" column="PF_IMG3_RENAME"/>
+		<result property="pf_Img4" column="PF_IMG4"/>		
+		<result property="pf_Img4_ReName" column="PF_IMG4_RENAME"/>
+		<result property="pf_Img5" column="PF_IMG5"/>
+		<result property="pf_Img5_ReName" column="PF_IMG5_RENAME"/>
+		<result property="pf_Img6" column="PF_IMG6"/>
+		<result property="pf_Img6_ReName" column="PF_IMG6_RENAME"/>
+		<result property="pf_Dimg1" column="PF_DIMG1"/>
+		<result property="pf_Dimg1_ReName" column="PF_DIMG1_RENAME"/>
+		<result property="pf_Dimg2" column="PF_DIMG2"/>			
+		<result property="pf_Dimg2_ReName" column="PF_DIMG2_RENAME"/>
+		<result property="pf_Dimg3" column="PF_DIMG3"/>	
+		<result property="pf_Dimg3_ReName" column="PF_DIMG3_RENAME"/>
+		<result property="pf_P_NO" column="PF_P_NO"/>	
+		
+	</resultMap>
+	
+	<!-- 상품 옵션 등록정보 -->
+
+	<resultMap id="productOptionResultSet" type="Product_Option">
+		<id property="op_NO" column="OP_NO"/>
+		
+		<result property="option_1" column="OPTION_1"/>
+		<result property="option_2" column="OPTION_2"/>
+		<result property="op_Stock" column="OP_STOCK"/>
+		<result property="op_Rec_Date" column="OP_REC_DATE"/>
+		<result property="op_Status_YN" column="OP_STATUS_YN"/>
+		<result property="op_P_NO" column="OP_P_NO"/>
+		
+		<collection property="pList" resultMap="productResultSet"/>
+	</resultMap>
+	
+	<!-- 브랜드 정보 -->
+	<resultMap id="brandResultSet" type="Brand">
+		<id property="brand_NO" column="BRAND_NO"/>
+		<result property="b_Name" column="B_NAME"/>
+		<result property="b_Logo" column="B_LOGO"/>
+		<result property="b_Logo_ReName" column="B_LOGO_RENAME"/>
+		<result property="b_Business_NO" column="B_BUSINESS_NO"/>
+		<result property="b_Status" column="B_STATUS"/>
+		<result property="b_Enter_Date" column="B_ENTER_DATE"/>
+		<result property="b_Close_Date" column="B_CLOSE_DATE"/>
+		<result property="b_Close_Content" column="B_CLOSE_CONTENT"/>
+		<result property="b_Modify_ID" column="B_MODIFY_ID"/>
+		<result property="b_Modify_Date" column="B_MODIFY_DATE"/>
+		<result property="b_Owner1_ID" column="B_OWNER1_ID"/>
+		<result property="b_Owner2_ID" column="B_OWNER2_ID"/>
+		<result property="b_Owner3_ID" column="B_OWNER3_ID"/>
+		<result property="b_Phone" column="B_PHONE"/>
+		<result property="b_Address" column="B_ADDRESS"/>
+		<result property="b_Owner_Name" column="B_OWNER_NAME"/>
+		<result property="b_Comment" column="B_COMMENT"/>
+		<result property="b_Email1" column="B_EMAIL1"/>
+		<result property="b_Email2" column="B_EMAIL2"/>
+		<result property="b_Email3" column="B_EMAIL3"/>
+	</resultMap>
+	
+	
+	<select id="selectNoReadReviewList" resultMap="reviewResultSet">
+		SELECT *
+		FROM REVIEW RE
+        JOIN PRODUCT P
+        ON RE.V_P_NO = P.P_NO
+        JOIN PRODUCT_FILE PF
+        ON RE.V_P_NO = PF.PF_P_NO
+		WHERE V_STATUS = 'Y'
+		AND V_CHECK = 'N'
+		AND V_B_NO = #{bNO}
+	</select>
+	
+	<select id="selectNoReadReviewReplyList" resultMap="reviewReplyResultSet">
+		SELECT *
+		FROM REVIEW_REPLY REP
+		JOIN MEMBER M
+		ON REP.VR_MNO = M.MNO
+        LEFT JOIN BRAND B
+        ON M.BRAND_NO = B.BRAND_NO
+        WHERE REP.VR_STATUS = 'Y'
+	</select>
+
+	<update id="updateReViewCheck" parameterType="String">
+		UPDATE REVIEW
+		SET V_CHECK = 'Y'
+		WHERE V_NO = #{r}
+	</update>
+
+	<update id="updateReplyCheck" parameterType="_int">
+		UPDATE REVIEW_REPLY
+		SET VR_CHECK = 'Y'
+		WHERE VR_NO = #{r}
+	</update>
+	
+	<insert id="insertReply" parameterType="Review_Reply">
+		INSERT INTO REVIEW_REPLY 
+		VALUES (SEQ_VR_NO.NEXTVAL,  #{vr_NO}, #{vr_Writer}, #{vr_Content}
+			, DEFAULT , DEFAULT , DEFAULT , DEFAULT , DEFAULT,#{vr_Mno})
+	</insert>
+	
+	<update id="deleteReply" parameterType="_int">
+		UPDATE REVIEW_REPLY
+		SET VR_STATUS = 'N'
+		WHERE VR_NO = #{rrNO}
+	</update>
+	
+	<select id="selectReadReviewList" resultMap="reviewResultSet">
+		SELECT *
+		FROM REVIEW RE
+        JOIN PRODUCT P
+        ON RE.V_P_NO = P.P_NO
+        JOIN PRODUCT_FILE PF
+        ON RE.V_P_NO = PF.PF_P_NO
+		WHERE V_STATUS = 'Y'
+		AND V_CHECK = 'Y'
+		AND V_B_NO = #{bNO}
+	</select>
+	
+	<select id="selectReadReviewReplyList" resultMap="reviewReplyResultSet">
+		SELECT *
+		FROM REVIEW_REPLY REP
+		JOIN MEMBER M
+		ON REP.VR_MNO = M.MNO
+        LEFT JOIN BRAND B
+        ON M.BRAND_NO = B.BRAND_NO
+        WHERE REP.VR_STATUS = 'Y'
+	</select>
+
+
+
+</mapper>

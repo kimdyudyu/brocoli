@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ownerProduct-mapper">
+	
+	<!-- 	참고용 MAPPER파일입니다. 본인이 사용할 파일은 반드시 새로 생성해서 사용해주세요. -->
+	
+	<!-- resultMap -->
+	<!-- 상품등록정보 -->
+	<!-- 작성자 : 박주완 -->
+ 	<resultMap  type="Product" id="productResultSet">
+		<id property="p_NO" column="P_NO"/>
+		
+		<result property="p_Name" column="P_NAME"/>
+		<result property="p_Price" column="P_PRICE"/>
+		<result property="p_Sail_Price" column="P_SAIL_PRICE"/>
+		<result property="p_Last_Price" column="P_LAST_PRICE"/>
+		<result property="p_Bcategory" column="P_BCATEGORY"/>
+		<result property="p_Scategory" column="P_SCATEGORY"/>
+		<result property="p_Comment" column="P_COMMENT"/>
+		<result property="p_Order_Count" column="P_ORDER_COUNT"/>
+		<result property="p_Status" column="P_STATUS"/>
+		<result property="p_Writer" column="P_WRITER"/>
+		<result property="p_Insert_Date" column="P_INSERT_DATE"/>
+		<result property="p_Modify_Id" column="P_MODIFY_ID"/>
+		<result property="p_Modify_Date" column="P_MODIFY_DATE"/>
+		<result property="p_Show_YN" column="P_SHOW_YN"/>
+		<result property="p_Brand_NO" column="P_BRAND_NO"/>
+		
+		<collection property="pfList" resultMap="ProductFileResultSet"/>
+	</resultMap>
+	
+	<!-- 상품 이미지 등록정보 -->
+	<resultMap  type="Product_File" id="ProductFileResultSet">
+		<id property="pf_NO" column="PF_NO"/>
+		
+		<result property="pf_Img1" column="PF_IMG1"/>
+		<result property="pf_Img1_ReName" column="PF_IMG1_RENAME"/>
+		<result property="pf_Img2" column="PF_IMG2"/>
+		<result property="pf_Img2_ReName" column="PF_IMG2_RENAME"/>
+		<result property="pf_Img3" column="PF_IMG3"/>
+		<result property="pf_Img3_ReName" column="PF_IMG3_RENAME"/>
+		<result property="pf_Img4" column="PF_IMG4"/>		
+		<result property="pf_Img4_ReName" column="PF_IMG4_RENAME"/>
+		<result property="pf_Img5" column="PF_IMG5"/>
+		<result property="pf_Img5_ReName" column="PF_IMG5_RENAME"/>
+		<result property="pf_Img6" column="PF_IMG6"/>
+		<result property="pf_Img6_ReName" column="PF_IMG6_RENAME"/>
+		<result property="pf_Dimg1" column="PF_DIMG1"/>
+		<result property="pf_Dimg1_ReName" column="PF_DIMG1_RENAME"/>
+		<result property="pf_Dimg2" column="PF_DIMG2"/>			
+		<result property="pf_Dimg2_ReName" column="PF_DIMG2_RENAME"/>
+		<result property="pf_Dimg3" column="PF_DIMG3"/>	
+		<result property="pf_Dimg3_ReName" column="PF_DIMG3_RENAME"/>
+		<result property="pf_P_NO" column="PF_P_NO"/>	
+		
+	</resultMap>
+	
+
+	
+	<!-- 상품 옵션 등록정보 -->
+
+	<resultMap id="productOptionResultSet" type="Product_Option">
+		<id property="op_NO" column="OP_NO"/>
+		
+		<result property="option_1" column="OPTION_1"/>
+		<result property="option_2" column="OPTION_2"/>
+		<result property="op_Stock" column="OP_STOCK"/>
+		<result property="op_Rec_Date" column="OP_REC_DATE"/>
+		<result property="op_Status_YN" column="OP_STATUS_YN"/>
+		<result property="op_P_NO" column="OP_P_NO"/>
+		
+		<collection property="pList" resultMap="productResultSet"/>
+	</resultMap>
+
+	
+<!-- ***************************** resultMap 끝 ***************************** -->
+	
+	<!-- 상품정보등록 -->
+	<insert id="insertProduct" parameterType="Product">
+  		<selectKey keyProperty="p_NO" resultType="int" order="BEFORE">
+		    SELECT SEQ_P_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO PRODUCT
+		VALUES(#{p_NO},#{p_Name},#{p_Price},#{p_Sail_Price},#{p_Last_Price},#{p_Bcategory},#{p_Scategory},
+				#{p_Comment},0,DEFAULT,#{p_Writer},SYSDATE,#{p_Modify_Id, jdbcType=VARCHAR},#{p_Modify_Date, jdbcType=VARCHAR},DEFAULT,#{p_Brand_NO})
+	</insert>	
+	
+	<!-- 상품 이미지 정보등록 -->
+	<insert id="insertProductImg" parameterType="Product_File">
+		INSERT INTO PRODUCT_FILE
+		VALUES(SEQ_PF_NO.NEXTVAL, #{pf_Img1},#{pf_Img1_ReName},#{pf_Img2},#{pf_Img2_ReName},#{pf_Img3},#{pf_Img3_ReName},#{pf_Img4},
+				#{pf_Img4_ReName},#{pf_Img5},#{pf_Img5_ReName},#{pf_Img6},#{pf_Img6_ReName},#{pf_Dimg1},#{pf_Dimg1_ReName},#{pf_Dimg2},
+				#{pf_Dimg2_ReName},#{pf_Dimg3},#{pf_Dimg3_ReName},#{pf_P_NO})
+	</insert>
+	
+	<!-- 상품 옵션 정보등록 -->
+
+	<insert id="insertProductOption" parameterType="Product_Option">
+		INSERT INTO PRODUCT_OPTION
+		VALUES(SEQ_OP_NO.NEXTVAL, #{option_1}, #{option_2}, #{op_Stock}, SYSDATE, DEFAULT, #{op_P_NO})
+	</insert>
+	
+	<select id="selectProductList" resultMap="productResultSet">
+		SELECT *
+		FROM PRODUCT P
+		JOIN PRODUCT_FILE PF
+		ON  P.P_NO = PF.PF_P_NO
+		WHERE p_Brand_NO = #{Brand_NO}
+		ORDER BY P.P_NO DESC
+	</select>
+	
+	<select id="selectStockDetail" resultMap="productOptionResultSet">
+		SELECT * 
+		FROM PRODUCT_OPTION
+		WHERE OP_P_NO = #{pNO}
+		ORDER BY OP_NO DESC
+	</select>
+	
+	<update id="updateStockChange" parameterType="Product_Option">
+		UPDATE PRODUCT_OPTION
+	    SET OP_STATUS_YN = #{op_Status_YN},
+	    	OP_STOCK = #{op_Stock}
+	    WHERE OP_NO = #{op_NO}
+	</update>
+	
+	<select id="selectStockList" resultMap="productOptionResultSet">
+		SELECT * 
+		FROM PRODUCT_OPTION PO
+		JOIN PRODUCT P
+		ON PO.OP_P_NO = P.P_NO
+        JOIN PRODUCT_FILE PF 
+        ON P.P_NO = PF.PF_P_NO
+		WHERE P_BRAND_NO = #{bNO}
+		ORDER BY P.P_NO DESC
+	</select>
+	
+</mapper>
